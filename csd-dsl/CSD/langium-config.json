@@ -1,0 +1,12 @@
+{
+    "projectName": "Csd",
+    "languages": [{
+        "id": "csd",
+        "grammar": "src/language-server/csd.langium",
+        "fileExtensions": [".csd"],
+        "textMate": {
+            "out": "syntaxes/csd.tmLanguage.json"
+        }
+    }],
+    "out": "src/language-server/generated"
+}
