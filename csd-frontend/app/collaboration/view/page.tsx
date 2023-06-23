@@ -145,7 +145,7 @@ export default async function Home() {
             <textarea 
             disabled={true}
               className="shadow appearance-none  border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-white text-gray-900"
-              placeholder={loremIpsum() }
+              placeholder={loremIpsum().toString() }
             name="Text1" cols={40} rows={5}>
               
                </textarea>

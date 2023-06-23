@@ -30,8 +30,8 @@ const Sidebar = ({ children }: SidebarProps) => {
       {
         icon: HiOutlineHome,
         label: "Dashboard",
-        active: pathname === "/dashboard",
-        href: "/dashboard",
+        active: pathname === "/",
+        href: "/",
       },
       {
         icon: BiGridAlt,
