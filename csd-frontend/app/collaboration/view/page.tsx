@@ -13,6 +13,7 @@ import {
 import DateRangePicker from "@/components/DateRangePicker";
 import ProposalList from "@/components/ProposalList";
 import CollaborationModels from "@/components/CollaborationModels";
+import  LoremIpsum, { loremIpsum } from "react-lorem-ipsum";
 
 interface DateRange {
   startDate: Date;
@@ -144,8 +145,10 @@ export default async function Home() {
             <textarea 
             disabled={true}
               className="shadow appearance-none  border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-white text-gray-900"
-              placeholder="Enter Collaboration Title"
-            name="Text1" cols={40} rows={5}/>
+              placeholder={loremIpsum() }
+            name="Text1" cols={40} rows={5}>
+              
+               </textarea>
             
           </div>
           <UserList users={users} />
@@ -178,8 +181,12 @@ export default async function Home() {
           </div>
           
           <div className="p-5 text-left text-gray-900 ">
-            <div className="text-lg font-semibold">Decision Pattern</div>
+            <div className="text-lg font-semibold">Models</div>
+            <div className="flex gap-2">
+
+            <CollaborationModels />
            <CollaborationModels />
+            </div>
           </div>
 
         </div>
