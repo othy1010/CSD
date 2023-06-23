@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import Sidebar from "@/components/Sidebar";
 import ToasterProvider from "@/providers/ToasterProvider";
+import MainContent from "@/components/MainContent";
 
 const font = Inter({ subsets: ["latin"] });
 
@@ -19,8 +20,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         <ToasterProvider />
-
+        {/* <div style={{ display: "flex" }}> */}
         <Sidebar>{children}</Sidebar>
+        {/* <MainContent /> */}
+        {/* </div> */}
+
+        {/* <Player /> */}
       </body>
     </html>
   );
