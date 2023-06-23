@@ -72,14 +72,14 @@ export default async function Home() {
       <div className="mt-2 mb-7 px-3 flex justify-end gap-3">
         <div className="ml-2">
           <Button
-            onClick={() => router.push("/collaboration")}
+            onClick={() => router.push("/collaboration/create")}
             className="bg-white px-4 py-1"
           >
             Create a Collaboration
           </Button>
         </div>
         <div>
-          <Button className="bg-white px-4 py-1">Export</Button>
+          <Button  onClick={() => router.push("/collaboration/view")}className="bg-white px-4 py-1">Export</Button>
         </div>
       </div>
       <div className="m-2 px-6 ">

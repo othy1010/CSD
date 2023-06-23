@@ -11,6 +11,9 @@ import {
   DateValueType,
 } from "react-tailwindcss-datepicker/dist/types";
 import DateRangePicker from "@/components/DateRangePicker";
+import ProposalList from "@/components/ProposalList";
+import CollaborationModels from "@/components/CollaborationModels";
+import  LoremIpsum, { loremIpsum } from "react-lorem-ipsum";
 
 interface DateRange {
   startDate: Date;
@@ -28,6 +31,14 @@ export default async function Home() {
     eligibleDM: string;
     isModerator: boolean;
     email: string;
+  }
+  interface Proposal {
+    title: string;
+    status: string;
+    description: string;
+    collaborationProject: string;
+    vulnerabilities: string;
+    date: String;
   }
 
   const [value, setValue] = useState<DateRange>({
@@ -52,6 +63,14 @@ export default async function Home() {
       });
     }
   };
+  const proposalsl: Proposal[] = [
+    {title: "Propo 1",
+    status: "Active",
+    description: "Proposal description",
+    collaborationProject: "Collab 1",
+    vulnerabilities: "Moderated",
+    date: Date.toString(),}
+  ];
   const users: User[] = [
     {
       name: "User 1",
@@ -95,7 +114,7 @@ export default async function Home() {
               font-semibold
             "
           >
-            Welcome back
+            Collab 1 
           </h1>
           <div
             className="
@@ -115,36 +134,42 @@ export default async function Home() {
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-white ">
           <div className="p-5 text-left text-gray-900 ">
             <div className="text-lg font-semibold">Title</div>
-            <input
+            <div
               className="shadow appearance-none  border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-white text-gray-900"
-              type="text"
+              
               placeholder="Enter Collaboration Title"
-            />
+            >Title </div>
           </div>
           <div className="p-5 text-left text-gray-900 ">
             <div className="text-lg font-semibold">Description</div>
-            <input
+            <textarea 
+            disabled={true}
               className="shadow appearance-none  border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-white text-gray-900"
-              type="text"
-              placeholder="Enter Collaboration Title"
-            />
+              placeholder={loremIpsum().toString() }
+            name="Text1" cols={40} rows={5}>
+              
+               </textarea>
+            
           </div>
           <UserList users={users} />
+          <ProposalList proposals={proposalsl} />
           <div className="p-5 text-left text-gray-900 ">
-            <div className="text-lg font-semibold">Description</div>
+            <div className="text-lg font-semibold">Collaboration Date</div>
 
             <Datepicker
               inputClassName="shadow appearance-none  border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline bg-white text-gray-900"
               showShortcuts={true}
               showFooter={true}
               value={value}
+              disabled={true}
               onChange={handleValueChange}
             />
           </div>
           <div className="p-5 text-left text-gray-900 ">
-            <div className="text-lg font-semibold">Description</div>
+            <div className="text-lg font-semibold">Decision Pattern</div>
             <select
               id="countries"
+              disabled={true}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 "
             >
               <option selected>Choose a Decision Pattern</option>
@@ -154,6 +179,16 @@ export default async function Home() {
               <option value="dp4">Decision P 4 </option>
             </select>
           </div>
+          
+          <div className="p-5 text-left text-gray-900 ">
+            <div className="text-lg font-semibold">Models</div>
+            <div className="flex gap-2">
+
+            <CollaborationModels />
+           <CollaborationModels />
+            </div>
+          </div>
+
         </div>
       </div>
       <div className="mt-2 mb-7 px-3 flex justify-end gap-3">
