@@ -1,9 +1,6 @@
 package fr.irit.csd.config;
 
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.PropertySources;
 import org.springframework.web.cors.CorsConfiguration;
 
 import javax.validation.constraints.NotNull;
@@ -19,11 +16,7 @@ import java.util.Map;
  * <p> This class also load properties in the Spring Environment from the git.properties and META-INF/build-info.properties
  * files if they are found in the classpath.</p>
  */
-@ConfigurationProperties(prefix = "Csd", ignoreUnknownFields = false)
-@PropertySources({
-    @PropertySource(value = "classpath:git.properties", ignoreResourceNotFound = true),
-    @PropertySource(value = "classpath:META-INF/build-info.properties", ignoreResourceNotFound = true)
-})
+@ConfigurationProperties(prefix = "csd", ignoreUnknownFields = false)
 public class CsdProperties {
 
     private final Async async = new Async();
@@ -39,8 +32,6 @@ public class CsdProperties {
     private final Security security = new Security();
 
     private final ApiDocs apiDocs = new ApiDocs();
-
-    private final Metrics metrics = new Metrics();
 
     private final Logging logging = new Logging();
 
@@ -59,7 +50,7 @@ public class CsdProperties {
     /**
      * <p>Getter for the field <code>async</code>.</p>
      *
-     * @return a {@link io.github.Csd.config.CsdProperties.Async} object.
+     * @return a {@link CsdProperties.Async} object.
      */
     public Async getAsync() {
         return async;
@@ -68,7 +59,7 @@ public class CsdProperties {
     /**
      * <p>Getter for the field <code>http</code>.</p>
      *
-     * @return a {@link io.github.Csd.config.CsdProperties.Http} object.
+     * @return a {@link CsdProperties.Http} object.
      */
     public Http getHttp() {
         return http;
@@ -77,7 +68,7 @@ public class CsdProperties {
     /**
      * <p>Getter for the field <code>database</code>.</p>
      *
-     * @return a {@link io.github.Csd.config.CsdProperties.Database} object.
+     * @return a {@link CsdProperties.Database} object.
      */
     public Database getDatabase() {
         return database;
@@ -86,7 +77,7 @@ public class CsdProperties {
     /**
      * <p>Getter for the field <code>cache</code>.</p>
      *
-     * @return a {@link io.github.Csd.config.CsdProperties.Cache} object.
+     * @return a {@link CsdProperties.Cache} object.
      */
     public Cache getCache() {
         return cache;
@@ -95,7 +86,7 @@ public class CsdProperties {
     /**
      * <p>Getter for the field <code>mail</code>.</p>
      *
-     * @return a {@link io.github.Csd.config.CsdProperties.Mail} object.
+     * @return a {@link CsdProperties.Mail} object.
      */
     public Mail getMail() {
         return mail;
@@ -104,7 +95,7 @@ public class CsdProperties {
     /**
      * <p>Getter for the field <code>registry</code>.</p>
      *
-     * @return a {@link io.github.Csd.config.CsdProperties.Registry} object.
+     * @return a {@link CsdProperties.Registry} object.
      */
     public Registry getRegistry() {
         return registry;
@@ -113,7 +104,7 @@ public class CsdProperties {
     /**
      * <p>Getter for the field <code>security</code>.</p>
      *
-     * @return a {@link io.github.Csd.config.CsdProperties.Security} object.
+     * @return a {@link CsdProperties.Security} object.
      */
     public Security getSecurity() {
         return security;
@@ -122,25 +113,16 @@ public class CsdProperties {
     /**
      * <p>Getter for the field <code>api-docs</code>.</p>
      *
-     * @return a {@link io.github.Csd.config.CsdProperties.ApiDocs} object.
+     * @return a {@link CsdProperties.ApiDocs} object.
      */
     public ApiDocs getApiDocs() {
         return apiDocs;
     }
 
     /**
-     * <p>Getter for the field <code>metrics</code>.</p>
-     *
-     * @return a {@link io.github.Csd.config.CsdProperties.Metrics} object.
-     */
-    public Metrics getMetrics() {
-        return metrics;
-    }
-
-    /**
      * <p>Getter for the field <code>logging</code>.</p>
      *
-     * @return a {@link io.github.Csd.config.CsdProperties.Logging} object.
+     * @return a {@link CsdProperties.Logging} object.
      */
     public Logging getLogging() {
         return logging;
@@ -158,7 +140,7 @@ public class CsdProperties {
     /**
      * <p>Getter for the field <code>social</code>.</p>
      *
-     * @return a {@link io.github.Csd.config.CsdProperties.Social} object.
+     * @return a {@link CsdProperties.Social} object.
      */
     public Social getSocial() {
         return social;
@@ -167,7 +149,7 @@ public class CsdProperties {
     /**
      * <p>Getter for the field <code>gateway</code>.</p>
      *
-     * @return a {@link io.github.Csd.config.CsdProperties.Gateway} object.
+     * @return a {@link CsdProperties.Gateway} object.
      */
     public Gateway getGateway() {
         return gateway;
@@ -176,7 +158,7 @@ public class CsdProperties {
     /**
      * <p>Getter for the field <code>clientApp</code>.</p>
      *
-     * @return a {@link io.github.Csd.config.CsdProperties.ClientApp} object.
+     * @return a {@link CsdProperties.ClientApp} object.
      */
     public ClientApp getClientApp() {
         return clientApp;
@@ -185,7 +167,7 @@ public class CsdProperties {
     /**
      * <p>Getter for the field <code>auditEvents</code>.</p>
      *
-     * @return a {@link io.github.Csd.config.CsdProperties.AuditEvents} object.
+     * @return a {@link CsdProperties.AuditEvents} object.
      */
     public AuditEvents getAuditEvents() {
         return auditEvents;
@@ -258,12 +240,23 @@ public class CsdProperties {
 
             private String bucketName;
 
+            private String scopeName;
+
             public String getBucketName() {
                 return bucketName;
             }
 
             public Couchbase setBucketName(String bucketName) {
                 this.bucketName = bucketName;
+                return this;
+            }
+
+            public String getScopeName() {
+                return scopeName;
+            }
+
+            public Couchbase setScopeName(String scopeName) {
+                this.scopeName = scopeName;
                 return this;
             }
         }
@@ -312,64 +305,6 @@ public class CsdProperties {
             private int timeToLiveSeconds = CsdDefaults.Cache.Hazelcast.timeToLiveSeconds;
 
             private int backupCount = CsdDefaults.Cache.Hazelcast.backupCount;
-
-            private final ManagementCenter managementCenter = new ManagementCenter();
-
-            /**
-             * In the Hazelcast v4.x, the cluster node doesn't expose
-             * configurations to connect to the management center. Setting up
-             * of this property doesn't provide any behavior and has been
-             * retained for the backward compatibility, and should be
-             * removed in the next major release of the Csd
-             *
-             * @return a {@link io.github.Csd.config.CsdProperties.Cache.Hazelcast.ManagementCenter} object.
-             */
-            @Deprecated
-            public ManagementCenter getManagementCenter() {
-                return managementCenter;
-            }
-
-            /**
-             * In the Hazelcast v4.x, the cluster node doesn't expose
-             * configurations to connect to the management center. Setting up
-             * of this class properties don't provide any behavior and has
-             * been retained for the backward compatibility, and should be
-             * removed in the next major release of the Csd
-             */
-            @Deprecated
-            public static class ManagementCenter {
-
-                private boolean enabled = CsdDefaults.Cache.Hazelcast.ManagementCenter.enabled;
-
-                private int updateInterval = CsdDefaults.Cache.Hazelcast.ManagementCenter.updateInterval;
-
-                private String url = CsdDefaults.Cache.Hazelcast.ManagementCenter.url;
-
-                public boolean isEnabled() {
-                    return enabled;
-                }
-
-                public void setEnabled(boolean enabled) {
-                    this.enabled = enabled;
-                }
-
-                public int getUpdateInterval() {
-                    return updateInterval;
-                }
-
-                public void setUpdateInterval(int updateInterval) {
-                    this.updateInterval = updateInterval;
-                }
-
-                public String getUrl() {
-                    return url;
-                }
-
-                public void setUrl(String url) {
-                    this.url = url;
-                }
-
-            }
 
             public int getTimeToLiveSeconds() {
                 return timeToLiveSeconds;
@@ -748,6 +683,8 @@ public class CsdProperties {
 
     public static class Security {
 
+        private String contentSecurityPolicy = CsdDefaults.Security.contentSecurityPolicy;
+
         private final ClientAuthorization clientAuthorization = new ClientAuthorization();
 
         private final Authentication authentication = new Authentication();
@@ -770,6 +707,14 @@ public class CsdProperties {
 
         public OAuth2 getOauth2() {
             return oauth2;
+        }
+
+        public String getContentSecurityPolicy() {
+            return contentSecurityPolicy;
+        }
+
+        public void setContentSecurityPolicy(String contentSecurityPolicy) {
+            this.contentSecurityPolicy = contentSecurityPolicy;
         }
 
         public static class ClientAuthorization {
@@ -918,13 +863,9 @@ public class CsdProperties {
 
         private String defaultIncludePattern = CsdDefaults.ApiDocs.defaultIncludePattern;
 
-        private String host = CsdDefaults.ApiDocs.host;
-
-        private String[] protocols = CsdDefaults.ApiDocs.protocols;
+        private String managementIncludePattern = CsdDefaults.ApiDocs.managementIncludePattern;
 
         private Server[] servers = {};
-
-        private boolean useDefaultResponseMessages = CsdDefaults.ApiDocs.useDefaultResponseMessages;
 
         public String getTitle() {
             return title;
@@ -1006,50 +947,25 @@ public class CsdProperties {
             this.defaultIncludePattern = defaultIncludePattern;
         }
 
-        public String getHost() {
-            return host;
+        public String getManagementIncludePattern() {
+            return managementIncludePattern;
         }
 
-        public void setHost(final String host) {
-            this.host = host;
-        }
-
-        public String[] getProtocols() {
-            return protocols;
-        }
-
-        public void setProtocols(final String[] protocols) {
-            this.protocols = protocols;
+        public void setManagementIncludePattern(String managementIncludePattern) {
+            this.managementIncludePattern = managementIncludePattern;
         }
 
         public Server[] getServers() {
             return servers;
         }
 
-        public void setServers(final Server[] servers) {
+        public void setServers(Server[] servers) {
             this.servers = servers;
         }
 
-        public boolean isUseDefaultResponseMessages() {
-            return useDefaultResponseMessages;
-        }
-
-        public void setUseDefaultResponseMessages(final boolean useDefaultResponseMessages) {
-            this.useDefaultResponseMessages = useDefaultResponseMessages;
-        }
-
         public static class Server {
-            private String name;
             private String url;
             private String description;
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
 
             public String getUrl() {
                 return url;
@@ -1065,38 +981,6 @@ public class CsdProperties {
 
             public void setDescription(String description) {
                 this.description = description;
-            }
-        }
-    }
-
-    public static class Metrics {
-
-        private final Logs logs = new Logs();
-
-        public Logs getLogs() {
-            return logs;
-        }
-
-        public static class Logs {
-
-            private boolean enabled = CsdDefaults.Metrics.Logs.enabled;
-
-            private long reportFrequency = CsdDefaults.Metrics.Logs.reportFrequency;
-
-            public boolean isEnabled() {
-                return enabled;
-            }
-
-            public void setEnabled(boolean enabled) {
-                this.enabled = enabled;
-            }
-
-            public long getReportFrequency() {
-                return reportFrequency;
-            }
-
-            public void setReportFrequency(long reportFrequency) {
-                this.reportFrequency = reportFrequency;
             }
         }
     }
@@ -1127,7 +1011,7 @@ public class CsdProperties {
 
             private int port = CsdDefaults.Logging.Logstash.port;
 
-            private int queueSize = CsdDefaults.Logging.Logstash.queueSize;
+            private int ringBufferSize = CsdDefaults.Logging.Logstash.ringBufferSize;
 
             public boolean isEnabled() {
                 return enabled;
@@ -1153,12 +1037,28 @@ public class CsdProperties {
                 this.port = port;
             }
 
+            /*
+                queueSize is deprecated in favour of ringBufferSize
+             */
+            @Deprecated
             public int getQueueSize() {
-                return queueSize;
+                return getRingBufferSize();
             }
 
+            /*
+                queueSize is deprecated in favour of ringBufferSize
+             */
+            @Deprecated
             public void setQueueSize(int queueSize) {
-                this.queueSize = queueSize;
+                setRingBufferSize(queueSize);
+            }
+
+            public int getRingBufferSize() {
+                return ringBufferSize;
+            }
+
+            public void setRingBufferSize(int ringBufferSize) {
+                this.ringBufferSize = ringBufferSize;
             }
         }
     }
@@ -1212,7 +1112,7 @@ public class CsdProperties {
             }
 
             public long getLimit() {
-                return this.limit;
+                return limit;
             }
 
             public void setLimit(long limit) {

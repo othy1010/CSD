@@ -25,15 +25,14 @@ dependencies {
     implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
     implementation "org.springframework.boot:spring-boot-starter-security"
     testImplementation "org.springframework.security:spring-security-test"
-	implementation "io.jsonwebtoken:jjwt-api"
-    if (!project.hasProperty("gae")) {
-    runtimeOnly "io.jsonwebtoken:jjwt-impl"
-    runtimeOnly "io.jsonwebtoken:jjwt-jackson"
-    } else {
-    implementation "io.jsonwebtoken:jjwt-impl"
-    implementation "io.jsonwebtoken:jjwt-jackson"
-    }
-    implementation "org.zalando:problem-spring-web"
+	implementation "io.jsonwebtoken:jjwt-api:0.11.2"
+   
+
+    implementation "io.jsonwebtoken:jjwt-impl:0.11.2"
+    implementation "io.jsonwebtoken:jjwt-jackson:0.11.2"
+    
+    implementation "io.micrometer:micrometer-registry-prometheus"
+    implementation "org.zalando:problem-spring-web:0.25.2"
     implementation "org.springframework.security:spring-security-data"
     implementation 'org.apache.commons:commons-lang3'
     implementation 'org.hibernate.validator:hibernate-validator'

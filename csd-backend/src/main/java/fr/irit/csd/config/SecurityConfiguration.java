@@ -24,7 +24,7 @@ import fr.irit.csd.security.jwt.TokenProvider;
 @Import(SecurityProblemSupport.class)
 public class SecurityConfiguration {
 
-    private final CsdProperties CsdProperties;
+    private final CsdProperties csdProperties;
 
     private final TokenProvider tokenProvider;
 
@@ -34,13 +34,13 @@ public class SecurityConfiguration {
     public SecurityConfiguration(
         TokenProvider tokenProvider,
         CorsFilter corsFilter,
-        CsdProperties CsdProperties,
+        CsdProperties csdProperties,
         SecurityProblemSupport problemSupport
     ) {
         this.tokenProvider = tokenProvider;
         this.corsFilter = corsFilter;
         this.problemSupport = problemSupport;
-        this.CsdProperties = CsdProperties;
+        this.csdProperties = csdProperties;
     }
 
     @Bean
@@ -61,7 +61,7 @@ public class SecurityConfiguration {
                 .accessDeniedHandler(problemSupport)
         .and()
             .headers()
-                .contentSecurityPolicy(CsdProperties.getSecurity().getContentSecurityPolicy())
+                .contentSecurityPolicy(csdProperties.getSecurity().getContentSecurityPolicy())
             .and()
                 .referrerPolicy(ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN)
             .and()

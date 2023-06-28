@@ -8,6 +8,8 @@ import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.*;
 import java.util.stream.Collectors;
+
+import fr.irit.csd.config.CsdProperties;
 import fr.irit.csd.management.SecurityMetersService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
