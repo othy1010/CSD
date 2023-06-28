@@ -1,7 +1,7 @@
-package org.csd.core.service.dto;
+package fr.irit.csd.service.dto;
 
 import java.io.Serializable;
-import org.csd.core.domain.User;
+import fr.irit.csd.domain.User;
 
 /**
  * A DTO representing a user, with only the public attributes.

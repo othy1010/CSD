@@ -1,13 +1,13 @@
-package org.csd.core.service.dto;
+package fr.irit.csd.service.dto;
 
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javax.validation.constraints.*;
-import org.csd.core.config.Constants;
-import org.csd.core.domain.Authority;
-import org.csd.core.domain.User;
+import fr.irit.csd.config.Constants;
+import fr.irit.csd.domain.Authority;
+import fr.irit.csd.domain.User;
 
 /**
  * A DTO representing a user, with his authorities.

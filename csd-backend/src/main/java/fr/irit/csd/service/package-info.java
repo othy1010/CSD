@@ -1,4 +1,4 @@
 /**
  * Service layer beans.
  */
-package org.csd.core.service;
+package fr.irit.csd.service;

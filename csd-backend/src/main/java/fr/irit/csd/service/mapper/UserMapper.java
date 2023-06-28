@@ -1,11 +1,11 @@
-package org.csd.core.service.mapper;
+package fr.irit.csd.service.mapper;
 
 import java.util.*;
 import java.util.stream.Collectors;
-import org.csd.core.domain.Authority;
-import org.csd.core.domain.User;
-import org.csd.core.service.dto.AdminUserDTO;
-import org.csd.core.service.dto.UserDTO;
+import fr.irit.csd.domain.Authority;
+import fr.irit.csd.domain.User;
+import fr.irit.csd.service.dto.AdminUserDTO;
+import fr.irit.csd.service.dto.UserDTO;
 import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

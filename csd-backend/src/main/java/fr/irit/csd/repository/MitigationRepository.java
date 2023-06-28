@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
  * Spring Data JPA repository for the Mitigation entity.
  *
  * When extending this class, extend MitigationRepositoryWithBagRelationships too.
- * For more information refer to https://github.com/jhipster/generator-jhipster/issues/17990.
+ * For more information refer to https://github.com/csd/generator-csd/issues/17990.
  */
 @Repository
 public interface MitigationRepository extends MitigationRepositoryWithBagRelationships, JpaRepository<Mitigation, Long> {

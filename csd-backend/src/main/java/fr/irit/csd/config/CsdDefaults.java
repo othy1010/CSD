@@ -196,7 +196,7 @@ public interface CsdDefaults {
 
     interface ClientApp {
 
-        String name = "jhipsterApp";
+        String name = "csdApp";
     }
 
     interface AuditEvents {

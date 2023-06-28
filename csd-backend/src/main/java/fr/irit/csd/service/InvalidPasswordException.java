@@ -1,4 +1,4 @@
-package org.csd.core.service;
+package fr.irit.csd.service;
 
 public class InvalidPasswordException extends RuntimeException {
 

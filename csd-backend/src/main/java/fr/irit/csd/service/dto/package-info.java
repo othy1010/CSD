@@ -1,4 +1,4 @@
 /**
  * Data Transfer Objects.
  */
-package org.csd.core.service.dto;
+package fr.irit.csd.service.dto;

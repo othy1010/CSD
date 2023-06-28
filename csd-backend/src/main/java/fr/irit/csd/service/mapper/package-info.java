@@ -1,4 +1,4 @@
 /**
  * MapStruct mappers for mapping domain objects and Data Transfer Objects.
  */
-package org.csd.core.service.mapper;
+package fr.irit.csd.service.mapper;

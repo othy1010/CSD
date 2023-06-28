@@ -1,18 +1,19 @@
-package org.csd.core.service;
+package fr.irit.csd.service;
 
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
-import org.csd.core.config.Constants;
-import org.csd.core.domain.Authority;
-import org.csd.core.domain.User;
-import org.csd.core.repository.AuthorityRepository;
-import org.csd.core.repository.UserRepository;
-import org.csd.core.security.AuthoritiesConstants;
-import org.csd.core.security.SecurityUtils;
-import org.csd.core.service.dto.AdminUserDTO;
-import org.csd.core.service.dto.UserDTO;
+import fr.irit.csd.config.Constants;
+import fr.irit.csd.config.RandomUtil;
+import fr.irit.csd.domain.Authority;
+import fr.irit.csd.domain.User;
+import fr.irit.csd.repository.AuthorityRepository;
+import fr.irit.csd.repository.UserRepository;
+import fr.irit.csd.security.AuthoritiesConstants;
+import fr.irit.csd.security.SecurityUtils;
+import fr.irit.csd.service.dto.AdminUserDTO;
+import fr.irit.csd.service.dto.UserDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cache.CacheManager;
@@ -22,7 +23,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import tech.jhipster.security.RandomUtil;
 
 /**
  * Service class for managing users.
