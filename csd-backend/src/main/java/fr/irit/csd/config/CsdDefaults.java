@@ -1,10 +1,14 @@
-package fr.irit.csd.config;
 
+package fr.irit.csd.config;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * <p>CsdDefaults interface.</p>
+ */
+@SuppressWarnings("java:S2386")
 public interface CsdDefaults {
 
     interface Async {
@@ -104,6 +108,7 @@ public interface CsdDefaults {
     }
 
     interface Security {
+        String contentSecurityPolicy = "default-src 'self'; frame-src 'self' data:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://storage.googleapis.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:";
 
         interface ClientAuthorization {
 
@@ -141,31 +146,11 @@ public interface CsdDefaults {
         String contactEmail = null;
         String license = null;
         String licenseUrl = null;
-        String defaultIncludePattern = "/api/.*";
+        String defaultIncludePattern = "/api/**";
+        String managementIncludePattern = "/management/**";
         String host = null;
         String[] protocols = {};
         boolean useDefaultResponseMessages = true;
-    }
-
-    interface Metrics {
-
-        interface Jmx {
-
-            boolean enabled = false;
-        }
-
-        interface Logs {
-
-            boolean enabled = false;
-            long reportFrequency = 60;
-
-        }
-
-        interface Prometheus {
-
-            boolean enabled = false;
-            String endpoint = "/prometheusMetrics";
-        }
     }
 
     interface Logging {
@@ -177,7 +162,7 @@ public interface CsdDefaults {
             boolean enabled = false;
             String host = "localhost";
             int port = 5000;
-            int queueSize = 512;
+            int ringBufferSize = 512;
         }
     }
 
@@ -211,7 +196,7 @@ public interface CsdDefaults {
 
     interface ClientApp {
 
-        String name = "csdApp";
+        String name = "jhipsterApp";
     }
 
     interface AuditEvents {
