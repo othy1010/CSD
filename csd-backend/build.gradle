@@ -16,9 +16,28 @@ repositories {
 }
 
 dependencies {
-	// implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	// runtimeOnly 'org.postgresql:postgresql'
+ 	implementation "com.fasterxml.jackson.module:jackson-module-jaxb-annotations"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-hibernate5"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-hppc"
+    implementation "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    testImplementation "org.springframework.security:spring-security-test"
+	implementation "io.jsonwebtoken:jjwt-api"
+    if (!project.hasProperty("gae")) {
+    runtimeOnly "io.jsonwebtoken:jjwt-impl"
+    runtimeOnly "io.jsonwebtoken:jjwt-jackson"
+    } else {
+    implementation "io.jsonwebtoken:jjwt-impl"
+    implementation "io.jsonwebtoken:jjwt-jackson"
+    }
+    implementation "org.zalando:problem-spring-web"
+    implementation "org.springframework.security:spring-security-data"
+    implementation 'org.apache.commons:commons-lang3'
+    implementation 'org.hibernate.validator:hibernate-validator'
+	runtimeOnly 'com.h2database:h2'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
