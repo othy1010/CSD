@@ -16,6 +16,8 @@ import fr.irit.csd.service.dto.AdminUserDTO;
 import fr.irit.csd.web.rest.errors.BadRequestAlertException;
 import fr.irit.csd.web.rest.errors.EmailAlreadyUsedException;
 import fr.irit.csd.web.rest.errors.LoginAlreadyUsedException;
+import fr.irit.csd.web.rest.errors.PaginationUtil;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,9 +30,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-import tech.jhipster.web.util.HeaderUtil;
-import tech.jhipster.web.util.PaginationUtil;
-import tech.jhipster.web.util.ResponseUtil;
+import fr.irit.csd.web.rest.errors.HeaderUtil;
+import fr.irit.csd.web.rest.errors.ResponseUtil;
 
 /**
  * REST controller for managing users.

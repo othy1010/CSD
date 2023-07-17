@@ -16,8 +16,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-import tech.jhipster.web.util.HeaderUtil;
-import tech.jhipster.web.util.ResponseUtil;
+import fr.irit.csd.web.rest.errors.HeaderUtil;
+import fr.irit.csd.web.rest.errors.ResponseUtil;
 
 /**
  * REST controller for managing {@link fr.irit.csd.domain.ParticipationMethod}.
