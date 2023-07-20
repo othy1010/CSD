@@ -1,0 +1,26 @@
+{
+  "csdApp": {
+    "change": {
+      "home": {
+        "title": "Changes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Change",
+        "createOrEditLabel": "Create or edit a Change",
+        "notFound": "No Changes found"
+      },
+      "created": "A new Change is created with identifier {{ param }}",
+      "updated": "A Change is updated with identifier {{ param }}",
+      "deleted": "A Change is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Change {{ id }}?"
+      },
+      "detail": {
+        "title": "Change"
+      },
+      "id": "ID",
+      "type": "Type",
+      "refId": "Ref Id",
+      "proposal": "Proposal"
+    }
+  }
+}

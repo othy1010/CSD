@@ -32,7 +32,7 @@ public class WebConfigurer implements ServletContextInitializer, WebServerFactor
 
     private final CsdProperties CsdProperties;
 
-    public WebConfigurer(Environment env, CsdProperties CsdProperties) {
+    public WebConfigurer(CsdProperties CsdProperties, Environment env) {
         this.env = env;
         this.CsdProperties = CsdProperties;
     }

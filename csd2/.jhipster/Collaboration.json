@@ -1,0 +1,54 @@
+{
+  "applications": ["csd"],
+  "changelogDate": "20230614120056",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "collaboration",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "decisionDuration",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "evaluationDuration",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "collaborationState",
+      "fieldType": "CollaborationState",
+      "fieldValues": "ACTIVE,TERMINATED,SUSPENDED"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Collaboration",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "proposal",
+      "otherEntityRelationshipName": "collaboration",
+      "relationshipName": "proposal",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "decisionPattern",
+      "otherEntityRelationshipName": "collaboration",
+      "relationshipName": "decisionPattern",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

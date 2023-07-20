@@ -1,0 +1,24 @@
+{
+  "applications": ["csd"],
+  "changelogDate": "20230614120956",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "mitigation",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Mitigation",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "vulnerability",
+      "otherEntityRelationshipName": "mitigations",
+      "ownerSide": true,
+      "relationshipName": "vulnerability",
+      "relationshipType": "many-to-many",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "no"
+}

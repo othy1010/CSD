@@ -1,0 +1,10 @@
+{
+  "csdApp": {
+    "EvaluationKind": {
+      "null": "",
+      "YESNO": "YESNO",
+      "RATING": "RATING",
+      "RANKING": "RANKING"
+    }
+  }
+}

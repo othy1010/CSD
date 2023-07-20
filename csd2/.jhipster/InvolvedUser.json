@@ -1,0 +1,54 @@
+{
+  "applications": ["csd"],
+  "changelogDate": "20230614115956",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "involved_user",
+  "fields": [
+    {
+      "fieldName": "expertiseLevel",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "userRole",
+      "fieldType": "UserRole",
+      "fieldValues": "DEVELOPER,ARCHITECT,SECURITYEXPERT,SYSADMINISTRATOR,MANAGER,OTHER"
+    },
+    {
+      "fieldName": "isModerator",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "isEligibleDM",
+      "fieldType": "Boolean"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "InvolvedUser",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "login",
+      "otherEntityName": "user",
+      "ownerSide": true,
+      "relationshipName": "user",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "decision",
+      "otherEntityRelationshipName": "user",
+      "relationshipName": "decisions",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "proposal",
+      "otherEntityRelationshipName": "user",
+      "relationshipName": "proposals",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "no"
+}

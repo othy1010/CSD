@@ -1,0 +1,30 @@
+{
+  "csdApp": {
+    "involvedUser": {
+      "home": {
+        "title": "Involved Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Involved User",
+        "createOrEditLabel": "Create or edit a Involved User",
+        "notFound": "No Involved Users found"
+      },
+      "created": "A new Involved User is created with identifier {{ param }}",
+      "updated": "A Involved User is updated with identifier {{ param }}",
+      "deleted": "A Involved User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Involved User {{ id }}?"
+      },
+      "detail": {
+        "title": "Involved User"
+      },
+      "id": "ID",
+      "expertiseLevel": "Expertise Level",
+      "userRole": "User Role",
+      "isModerator": "Is Moderator",
+      "isEligibleDM": "Is Eligible DM",
+      "user": "User",
+      "decisions": "Decisions",
+      "proposals": "Proposals"
+    }
+  }
+}

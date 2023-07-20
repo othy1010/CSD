@@ -2,6 +2,7 @@ package fr.irit.csd.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ import java.util.Map;
  * <p> This class also load properties in the Spring Environment from the git.properties and META-INF/build-info.properties
  * files if they are found in the classpath.</p>
  */
-@ConfigurationProperties(prefix = "csd", ignoreUnknownFields = false)
+@Component
+@ConfigurationProperties(prefix = "jhipster", ignoreUnknownFields = false)
 public class CsdProperties {
 
     private final Async async = new Async();

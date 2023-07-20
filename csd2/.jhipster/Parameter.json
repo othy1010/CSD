@@ -1,0 +1,28 @@
+{
+  "applications": ["csd"],
+  "changelogDate": "20230614120156",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "parameter",
+  "fields": [
+    {
+      "fieldName": "kind",
+      "fieldType": "ParameterKind",
+      "fieldValues": "ANONYMOUS,VISIBILE"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Parameter",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "participationMethod",
+      "otherEntityRelationshipName": "parameter",
+      "relationshipName": "participationMethod",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

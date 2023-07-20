@@ -1,0 +1,29 @@
+{
+  "csdApp": {
+    "threat": {
+      "home": {
+        "title": "Threats",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Threat",
+        "createOrEditLabel": "Create or edit a Threat",
+        "notFound": "No Threats found"
+      },
+      "created": "A new Threat is created with identifier {{ param }}",
+      "updated": "A Threat is updated with identifier {{ param }}",
+      "deleted": "A Threat is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Threat {{ id }}?"
+      },
+      "detail": {
+        "title": "Threat"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "probability": "Probability",
+      "reference": "Reference",
+      "refId": "Ref Id",
+      "vulnerability": "Vulnerability"
+    }
+  }
+}

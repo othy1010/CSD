@@ -1,0 +1,36 @@
+{
+  "applications": ["csd"],
+  "changelogDate": "20230614120556",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "participation_method",
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "ParticipationType",
+      "fieldValues": "RESTRICTED,DEMOCRATIC,DELEGATED"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ParticipationMethod",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "parameter",
+      "otherEntityRelationshipName": "participationMethod",
+      "relationshipName": "parameter",
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "selectionCriteria",
+      "otherEntityRelationshipName": "participationMethod",
+      "relationshipName": "selectionCriteria",
+      "relationshipType": "one-to-many",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "no"
+}

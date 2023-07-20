@@ -1,0 +1,10 @@
+{
+  "csdApp": {
+    "SelectionCriteriaType": {
+      "null": "",
+      "EXPERTISELEVEL": "EXPERTISELEVEL",
+      "EXPERTISEDOMAIN": "EXPERTISEDOMAIN",
+      "INVOLVEMENT": "INVOLVEMENT"
+    }
+  }
+}

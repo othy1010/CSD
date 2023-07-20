@@ -1,0 +1,63 @@
+{
+  "applications": ["csd"],
+  "changelogDate": "20230614121456",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "decision_pattern",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "DecisionPattern",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "collaboration",
+      "otherEntityRelationshipName": "decisionPattern",
+      "relationshipName": "collaboration",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "participationMethod",
+      "relationshipName": "participationMethod",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "codecisionMethod",
+      "relationshipName": "codecisionMethod",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "intent",
+      "relationshipName": "intent",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "solution",
+      "relationshipName": "solution",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "application",
+      "relationshipName": "application",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "knowuse",
+      "relationshipName": "knowuse",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "no"
+}

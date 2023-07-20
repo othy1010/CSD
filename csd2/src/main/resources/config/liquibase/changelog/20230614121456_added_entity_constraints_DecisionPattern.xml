@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity DecisionPattern.
+    -->
+    <changeSet id="20230614121456-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="participation_method_id"
+                                 baseTableName="decision_pattern"
+                                 constraintName="fk_decision_pattern__participation_method_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="participation_method"/>
+
+        <addForeignKeyConstraint baseColumnNames="codecision_method_id"
+                                 baseTableName="decision_pattern"
+                                 constraintName="fk_decision_pattern__codecision_method_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="codecision_method"/>
+
+        <addForeignKeyConstraint baseColumnNames="intent_id"
+                                 baseTableName="decision_pattern"
+                                 constraintName="fk_decision_pattern__intent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="intent"/>
+
+        <addForeignKeyConstraint baseColumnNames="solution_id"
+                                 baseTableName="decision_pattern"
+                                 constraintName="fk_decision_pattern__solution_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="solution"/>
+
+        <addForeignKeyConstraint baseColumnNames="application_id"
+                                 baseTableName="decision_pattern"
+                                 constraintName="fk_decision_pattern__application_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="application"/>
+
+        <addForeignKeyConstraint baseColumnNames="knowuse_id"
+                                 baseTableName="decision_pattern"
+                                 constraintName="fk_decision_pattern__knowuse_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="knowuse"/>
+    </changeSet>
+</databaseChangeLog>

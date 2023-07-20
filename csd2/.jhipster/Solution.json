@@ -1,0 +1,24 @@
+{
+  "applications": ["csd"],
+  "changelogDate": "20230614121356",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "solution",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Solution",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

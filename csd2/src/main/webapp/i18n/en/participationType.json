@@ -1,0 +1,10 @@
+{
+  "csdApp": {
+    "ParticipationType": {
+      "null": "",
+      "RESTRICTED": "RESTRICTED",
+      "DEMOCRATIC": "DEMOCRATIC",
+      "DELEGATED": "DELEGATED"
+    }
+  }
+}

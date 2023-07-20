@@ -1,0 +1,25 @@
+{
+  "csdApp": {
+    "selectionCriteria": {
+      "home": {
+        "title": "Selection Criteria",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Selection Criteria",
+        "createOrEditLabel": "Create or edit a Selection Criteria",
+        "notFound": "No Selection Criteria found"
+      },
+      "created": "A new Selection Criteria is created with identifier {{ param }}",
+      "updated": "A Selection Criteria is updated with identifier {{ param }}",
+      "deleted": "A Selection Criteria is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Selection Criteria {{ id }}?"
+      },
+      "detail": {
+        "title": "Selection Criteria"
+      },
+      "id": "ID",
+      "criterion": "Criterion",
+      "participationMethod": "Participation Method"
+    }
+  }
+}

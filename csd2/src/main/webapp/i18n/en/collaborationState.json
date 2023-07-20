@@ -1,0 +1,10 @@
+{
+  "csdApp": {
+    "CollaborationState": {
+      "null": "",
+      "ACTIVE": "ACTIVE",
+      "TERMINATED": "TERMINATED",
+      "SUSPENDED": "SUSPENDED"
+    }
+  }
+}

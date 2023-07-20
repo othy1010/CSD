@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Proposal.
+    -->
+    <changeSet id="20230614120756-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="proposal"
+                                 constraintName="fk_proposal__user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="involved_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="proposal_id"
+                                 baseTableName="rel_proposal__risk"
+                                 constraintName="fk_rel_proposal__risk__proposal_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="proposal"/>
+
+        <addForeignKeyConstraint baseColumnNames="risk_id"
+                                 baseTableName="rel_proposal__risk"
+                                 constraintName="fk_rel_proposal__risk__risk_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="risk"/>
+
+        <addForeignKeyConstraint baseColumnNames="collaboration_id"
+                                 baseTableName="proposal"
+                                 constraintName="fk_proposal__collaboration_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="collaboration"/>
+    </changeSet>
+</databaseChangeLog>

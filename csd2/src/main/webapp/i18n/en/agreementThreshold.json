@@ -1,0 +1,11 @@
+{
+  "csdApp": {
+    "AgreementThreshold": {
+      "null": "",
+      "LOW": "LOW",
+      "MEDIUM": "MEDIUM",
+      "HIGH": "HIGH",
+      "CUSTOM": "CUSTOM"
+    }
+  }
+}

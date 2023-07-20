@@ -1,0 +1,10 @@
+{
+  "csdApp": {
+    "ProposalState": {
+      "null": "",
+      "ACCEPTED": "ACCEPTED",
+      "REJECTED": "REJECTED",
+      "PENDING": "PENDING"
+    }
+  }
+}

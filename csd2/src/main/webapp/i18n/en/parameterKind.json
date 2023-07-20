@@ -1,0 +1,9 @@
+{
+  "csdApp": {
+    "ParameterKind": {
+      "null": "",
+      "ANONYMOUS": "ANONYMOUS",
+      "VISIBILE": "VISIBILE"
+    }
+  }
+}

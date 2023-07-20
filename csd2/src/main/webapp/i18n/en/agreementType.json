@@ -1,0 +1,10 @@
+{
+  "csdApp": {
+    "AgreementType": {
+      "null": "",
+      "APPROVED": "APPROVED",
+      "REJECTED": "REJECTED",
+      "TOBEREVISED": "TOBEREVISED"
+    }
+  }
+}

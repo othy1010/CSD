@@ -1,0 +1,26 @@
+{
+  "csdApp": {
+    "codecisionMethod": {
+      "home": {
+        "title": "Codecision Methods",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Codecision Method",
+        "createOrEditLabel": "Create or edit a Codecision Method",
+        "notFound": "No Codecision Methods found"
+      },
+      "created": "A new Codecision Method is created with identifier {{ param }}",
+      "updated": "A Codecision Method is updated with identifier {{ param }}",
+      "deleted": "A Codecision Method is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Codecision Method {{ id }}?"
+      },
+      "detail": {
+        "title": "Codecision Method"
+      },
+      "id": "ID",
+      "processKind": "Process Kind",
+      "evaluationKind": "Evaluation Kind",
+      "agreementThreshold": "Agreement Threshold"
+    }
+  }
+}

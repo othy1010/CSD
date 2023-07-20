@@ -1,0 +1,45 @@
+{
+  "applications": ["csd"],
+  "changelogDate": "20230614120456",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "threat",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "probability",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "reference",
+      "fieldType": "ThreatReference",
+      "fieldValues": "CAPEC,ATTACK,OTHER"
+    },
+    {
+      "fieldName": "refId",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Threat",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "vulnerability",
+      "otherEntityRelationshipName": "threat",
+      "ownerSide": true,
+      "relationshipName": "vulnerability",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

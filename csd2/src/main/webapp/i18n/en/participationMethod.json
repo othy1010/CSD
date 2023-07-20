@@ -1,0 +1,26 @@
+{
+  "csdApp": {
+    "participationMethod": {
+      "home": {
+        "title": "Participation Methods",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Participation Method",
+        "createOrEditLabel": "Create or edit a Participation Method",
+        "notFound": "No Participation Methods found"
+      },
+      "created": "A new Participation Method is created with identifier {{ param }}",
+      "updated": "A Participation Method is updated with identifier {{ param }}",
+      "deleted": "A Participation Method is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Participation Method {{ id }}?"
+      },
+      "detail": {
+        "title": "Participation Method"
+      },
+      "id": "ID",
+      "type": "Type",
+      "parameter": "Parameter",
+      "selectionCriteria": "Selection Criteria"
+    }
+  }
+}

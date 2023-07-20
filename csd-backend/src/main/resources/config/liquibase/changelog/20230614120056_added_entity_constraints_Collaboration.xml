@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <!--
+        Added the constraints for entity Collaboration.
+    -->
+    <changeSet id="20230614120056-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="decision_pattern_id"
+                                 baseTableName="collaboration"
+                                 constraintName="fk_collaboration__decision_pattern_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="decision_pattern"/>
+    </changeSet>
+</databaseChangeLog>

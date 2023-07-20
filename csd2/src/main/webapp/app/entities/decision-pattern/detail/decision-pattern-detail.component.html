@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="decisionPattern">
+      <h2 data-cy="decisionPatternDetailsHeading"><span jhiTranslate="csdApp.decisionPattern.detail.title">Decision Pattern</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ decisionPattern.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="csdApp.decisionPattern.name">Name</span></dt>
+        <dd>
+          <span>{{ decisionPattern.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="csdApp.decisionPattern.description">Description</span></dt>
+        <dd>
+          <span>{{ decisionPattern.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="csdApp.decisionPattern.participationMethod">Participation Method</span></dt>
+        <dd>
+          <div *ngIf="decisionPattern.participationMethod">
+            <a [routerLink]="['/participation-method', decisionPattern.participationMethod.id, 'view']">{{
+              decisionPattern.participationMethod.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="csdApp.decisionPattern.codecisionMethod">Codecision Method</span></dt>
+        <dd>
+          <div *ngIf="decisionPattern.codecisionMethod">
+            <a [routerLink]="['/codecision-method', decisionPattern.codecisionMethod.id, 'view']">{{
+              decisionPattern.codecisionMethod.id
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="csdApp.decisionPattern.intent">Intent</span></dt>
+        <dd>
+          <div *ngIf="decisionPattern.intent">
+            <a [routerLink]="['/intent', decisionPattern.intent.id, 'view']">{{ decisionPattern.intent.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="csdApp.decisionPattern.solution">Solution</span></dt>
+        <dd>
+          <div *ngIf="decisionPattern.solution">
+            <a [routerLink]="['/solution', decisionPattern.solution.id, 'view']">{{ decisionPattern.solution.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="csdApp.decisionPattern.application">Application</span></dt>
+        <dd>
+          <div *ngIf="decisionPattern.application">
+            <a [routerLink]="['/application', decisionPattern.application.id, 'view']">{{ decisionPattern.application.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="csdApp.decisionPattern.knowuse">Knowuse</span></dt>
+        <dd>
+          <div *ngIf="decisionPattern.knowuse">
+            <a [routerLink]="['/knowuse', decisionPattern.knowuse.id, 'view']">{{ decisionPattern.knowuse.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/decision-pattern', decisionPattern.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

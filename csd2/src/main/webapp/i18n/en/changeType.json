@@ -1,0 +1,10 @@
+{
+  "csdApp": {
+    "ChangeType": {
+      "null": "",
+      "ADDEDELT": "ADDEDELT",
+      "DELETEDELT": "DELETEDELT",
+      "MODIFIEDELT": "MODIFIEDELT"
+    }
+  }
+}

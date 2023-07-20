@@ -1,0 +1,10 @@
+{
+  "csdApp": {
+    "ProcessKind": {
+      "null": "",
+      "CONSENSUS": "CONSENSUS",
+      "MAJORITY": "MAJORITY",
+      "VOTING": "VOTING"
+    }
+  }
+}

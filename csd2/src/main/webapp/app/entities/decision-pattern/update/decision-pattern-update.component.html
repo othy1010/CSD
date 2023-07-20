@@ -1,0 +1,183 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-decision-pattern-heading"
+        data-cy="DecisionPatternCreateUpdateHeading"
+        jhiTranslate="csdApp.decisionPattern.home.createOrEditLabel"
+      >
+        Create or edit a Decision Pattern
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.decisionPattern.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.decisionPattern.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.decisionPattern.participationMethod" for="field_participationMethod"
+            >Participation Method</label
+          >
+          <select
+            class="form-control"
+            id="field_participationMethod"
+            data-cy="participationMethod"
+            name="participationMethod"
+            formControlName="participationMethod"
+            [compareWith]="compareParticipationMethod"
+          >
+            <option *ngIf="!editForm.get('participationMethod')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="participationMethodOption" *ngFor="let participationMethodOption of participationMethodsSharedCollection">
+              {{ participationMethodOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['participationMethod'])!.invalid &&
+            (editForm.get(['participationMethod'])!.dirty || editForm.get(['participationMethod'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['participationMethod'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.decisionPattern.codecisionMethod" for="field_codecisionMethod"
+            >Codecision Method</label
+          >
+          <select
+            class="form-control"
+            id="field_codecisionMethod"
+            data-cy="codecisionMethod"
+            name="codecisionMethod"
+            formControlName="codecisionMethod"
+            [compareWith]="compareCodecisionMethod"
+          >
+            <option *ngIf="!editForm.get('codecisionMethod')!.value" [ngValue]="null" selected></option>
+            <option [ngValue]="codecisionMethodOption" *ngFor="let codecisionMethodOption of codecisionMethodsSharedCollection">
+              {{ codecisionMethodOption.id }}
+            </option>
+          </select>
+        </div>
+        <div
+          *ngIf="
+            editForm.get(['codecisionMethod'])!.invalid &&
+            (editForm.get(['codecisionMethod'])!.dirty || editForm.get(['codecisionMethod'])!.touched)
+          "
+        >
+          <small
+            class="form-text text-danger"
+            *ngIf="editForm.get(['codecisionMethod'])?.errors?.required"
+            jhiTranslate="entity.validation.required"
+          >
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.decisionPattern.intent" for="field_intent">Intent</label>
+          <select
+            class="form-control"
+            id="field_intent"
+            data-cy="intent"
+            name="intent"
+            formControlName="intent"
+            [compareWith]="compareIntent"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="intentOption" *ngFor="let intentOption of intentsSharedCollection">{{ intentOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.decisionPattern.solution" for="field_solution">Solution</label>
+          <select
+            class="form-control"
+            id="field_solution"
+            data-cy="solution"
+            name="solution"
+            formControlName="solution"
+            [compareWith]="compareSolution"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="solutionOption" *ngFor="let solutionOption of solutionsSharedCollection">{{ solutionOption.id }}</option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.decisionPattern.application" for="field_application">Application</label>
+          <select
+            class="form-control"
+            id="field_application"
+            data-cy="application"
+            name="application"
+            formControlName="application"
+            [compareWith]="compareApplication"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="applicationOption" *ngFor="let applicationOption of applicationsSharedCollection">
+              {{ applicationOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.decisionPattern.knowuse" for="field_knowuse">Knowuse</label>
+          <select
+            class="form-control"
+            id="field_knowuse"
+            data-cy="knowuse"
+            name="knowuse"
+            formControlName="knowuse"
+            [compareWith]="compareKnowuse"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="knowuseOption" *ngFor="let knowuseOption of knowusesSharedCollection">{{ knowuseOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
