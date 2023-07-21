@@ -15,7 +15,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  */
 @Entity
 @Table(name = "involved_user")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+//@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class InvolvedUser implements Serializable {
 
@@ -46,12 +46,12 @@ public class InvolvedUser implements Serializable {
     private User user;
 
     @OneToMany(mappedBy = "user")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    //@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "proposal", "user" }, allowSetters = true)
     private Set<Decision> decisions = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    //@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "changes", "user", "risks", "collaboration", "decisions", "vulnerabilities" }, allowSetters = true)
     private Set<Proposal> proposals = new HashSet<>();
 

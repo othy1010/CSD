@@ -12,7 +12,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  */
 @Entity
 @Table(name = "selection_criteria")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+//@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class SelectionCriteria implements Serializable {
 

@@ -16,7 +16,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  */
 @Entity
 @Table(name = "proposal")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+//@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Proposal implements Serializable {
 
@@ -42,7 +42,7 @@ public class Proposal implements Serializable {
     private ProposalState proposalState;
 
     @OneToMany(mappedBy = "proposal")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    //@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "proposal" }, allowSetters = true)
     private Set<Change> changes = new HashSet<>();
 
@@ -57,7 +57,7 @@ public class Proposal implements Serializable {
         joinColumns = @JoinColumn(name = "proposal_id"),
         inverseJoinColumns = @JoinColumn(name = "risk_id")
     )
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    //@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "proposals", "vulnerabilities" }, allowSetters = true)
     private Set<Risk> risks = new HashSet<>();
 
@@ -66,12 +66,12 @@ public class Proposal implements Serializable {
     private Collaboration collaboration;
 
     @OneToMany(mappedBy = "proposal")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    //@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "proposal", "user" }, allowSetters = true)
     private Set<Decision> decisions = new HashSet<>();
 
     @ManyToMany(mappedBy = "proposals")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    //@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "risks", "proposals", "mitigations", "threats" }, allowSetters = true)
     private Set<Vulnerability> vulnerabilities = new HashSet<>();
 

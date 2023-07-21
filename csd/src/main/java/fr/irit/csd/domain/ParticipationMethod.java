@@ -15,7 +15,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  */
 @Entity
 @Table(name = "participation_method")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+//@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class ParticipationMethod implements Serializable {
 
@@ -32,12 +32,12 @@ public class ParticipationMethod implements Serializable {
     private ParticipationType type;
 
     @OneToMany(mappedBy = "participationMethod")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    //@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "participationMethod" }, allowSetters = true)
     private Set<Parameter> parameters = new HashSet<>();
 
     @OneToMany(mappedBy = "participationMethod")
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    //@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "participationMethod" }, allowSetters = true)
     private Set<SelectionCriteria> selectionCriteria = new HashSet<>();
 

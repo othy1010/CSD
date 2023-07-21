@@ -14,7 +14,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  */
 @Entity
 @Table(name = "mitigation")
-@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+//@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class Mitigation implements Serializable {
 
@@ -33,7 +33,7 @@ public class Mitigation implements Serializable {
         joinColumns = @JoinColumn(name = "mitigation_id"),
         inverseJoinColumns = @JoinColumn(name = "vulnerability_id")
     )
-    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    //@cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "risks", "proposals", "mitigations", "threats" }, allowSetters = true)
     private Set<Vulnerability> vulnerabilities = new HashSet<>();
 
