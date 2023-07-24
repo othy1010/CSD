@@ -12,6 +12,6 @@
                                  baseTableName="involved_user"
                                  constraintName="fk_involved_user__user_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="CSD_USER"/>
+                                 referencedTableName="jhi_user"/>
     </changeSet>
 </databaseChangeLog>

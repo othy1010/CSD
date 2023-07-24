@@ -70,6 +70,12 @@ const Sidebar = ({ children }: SidebarProps) => {
         active: pathname === "/reports",
         href: "/reports",
       },
+      {
+        icon: RiFileChartLine,
+        label: "Docs",
+        active: pathname === "/doc",
+        href: "/doc",
+      },
     ],
     [pathname]
   );

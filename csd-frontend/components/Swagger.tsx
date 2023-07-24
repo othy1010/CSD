@@ -3,60 +3,32 @@ import SwaggerUI from 'swagger-ui-react'
 import 'swagger-ui-react/swagger-ui.css';
 import axios from 'axios';
 
-const SwaggerComponent = () => {
-  const [urls, setUrls] = useState<{ name: any; url: string; }[] | null>(null);
-
-  useEffect(() => {
-    const getBearerToken = () => {
-      let authToken = localStorage.getItem('jhi-authenticationToken') || sessionStorage.getItem('jhi-authenticationToken');
-      if (authToken) {
-        authToken = JSON.parse(authToken);
-        return `Bearer ${authToken}`;
-      }
-      return null;
-    };
-
-    const axiosConfig = {
-      timeout: 10000,
-      
-      headers: { 
-      Authorization: getBearerToken() },
-    };
-
-
-    const baseUrl = '/v3/api-docs';
-
-    const fetchUrls = async () => {
-      const response = await axios.get('/api/');
-      // let swaggerUrls;
-      console.log("😒😒😒😒",response);
-
-      // if (Array.isArray(response.data)) {
-      //   swaggerUrls = response.data.map(({ group, description }) => ({ name: description, url: `${baseUrl}/${group}` }));
-      // } else {
-      //   swaggerUrls = [{ name: 'default', url: baseUrl }];
-      // }
-      
-      // swaggerUrls.sort(function (a, b) {
-      //   const x = a.name.toLowerCase(),
-      //     y = b.name.toLowerCase();
-      //   if (x.includes('(default)')) return -1;
-      //   if (y.includes('(default)')) return 1;
-      //   if (x.includes('(management)')) return -1;
-      //   if (y.includes('(management)')) return 1;
-      //   return x < y ? -1 : x > y ? 1 : 0;
-      // });
-
-      // setUrls(swaggerUrls);
-    };
-
-    fetchUrls();
-  }, []);
-
-  if (!urls) return <p>Loading...</p>; // or any loading indicator you use
+const SwaggerComponent = async () => {
+  const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1dGgiOiJST0xFX0FETUlOLFJPTEVfVVNFUiIsImV4cCI6MTY5Mjc3NDk5OX0.EgO19TbAeCkYPoG8lHFhAPxgHLJkvjpVSUW2IC6OBmWuce--OvNw-nfELthnRdUcKBUIsfIieRDDpvKdOILyxA';
+  // const config = {
+  //   headers: { Authorization: `Bearer ${token}` }
+  // };
+  // const api = await axios.get('/api-docs/springdocDefault', config);
+  // console.log("👌",api);
+  // const getBearerToken = () => {
+    
+  //   return token;
+  // };
   return (
-    <SwaggerUI url="https://petstore3.swagger.io/api/v3/openapi.json" />
-
+    // <SwaggerUI url="https://petstore3.swagger.io/api/v3/openapi.json" />
+    <div className='bg-white rounded-lg shadow-lg p-4 mb-4'>	
+  <SwaggerUI url={'/api-docs/springdocDefault'}
+       deepLinking={true}
+          docExpansion={'none'}
+          defaultModelsExpandDepth={-1}
+          requestInterceptor={(req) => {
+            req.headers['Authorization'] = token;
+            if (req.method === 'GET' && req.body === '{"additionalProp1":"string","additionalProp2":"string","additionalProp3":"string"}') {
+              req.body = undefined;
+            }
+            return req;
+          }}
+        /> </div>
     // <SwaggerUI 
     //   url="https://petstore.swagger.io/v2/swagger.json"
     //   deepLinking={true} 

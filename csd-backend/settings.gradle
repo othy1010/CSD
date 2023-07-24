@@ -1,5 +1,4 @@
 
-
 pluginManagement {
     repositories {
         mavenCentral()
@@ -19,4 +18,5 @@ pluginManagement {
         //jhipster-needle-gradle-plugin-management-plugins - JHipster will add additional entries here
     }
 }
-rootProject.name = 'csd'
+
+rootProject.name = "csd"

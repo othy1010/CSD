@@ -12,8 +12,10 @@ import {
 } from "react-tailwindcss-datepicker/dist/types";
 import DateRangePicker from "@/components/DateRangePicker";
 import SwaggerComponent from "@/components/Swagger";
-import SwaggerUI from "swagger-ui-react";
+import axios from "axios";
+import dynamic from "next/dynamic";
 
+const SwaggerUI = dynamic(import('swagger-ui-react'), {ssr: false})
 interface DateRange {
   startDate: Date;
   endDate: Date;
@@ -21,100 +23,61 @@ interface DateRange {
 export const revalidate = 0;
 
 export default async function Home() {
-  const router = useRouter();
-  interface User {
-    name: string;
-    status: string;
-    userRole: string;
-    expertiseDomain: string;
-    eligibleDM: string;
-    isModerator: boolean;
-    email: string;
-  }
-
-  const [value, setValue] = useState<DateRange>({
-    startDate: new Date(),
-    endDate: new Date(),
-  });
-  type DateValueType = DateRangeType | null;
-
-  const handleValueChange = (
-    newValue: DateValueType,
-    e?: HTMLInputElement | null
-  ) => {
-    console.log("newValue:", newValue);
-    if (
-      newValue !== null &&
-      newValue.startDate !== null &&
-      newValue.endDate !== null
-    ) {
-      setValue({
-        startDate: new Date(newValue.startDate),
-        endDate: new Date(newValue.endDate),
-      });
-    }
-  };
-  const users: User[] = [
-    {
-      name: "User 1",
-      status: "Active",
-      userRole: "Admin",
-      expertiseDomain: "Software Engineering",
-      eligibleDM: "Yes",
-      isModerator: true,
-      email: "user1@example.com",
-    },
-    {
-      name: "User 2",
-      status: "Inactive",
-      userRole: "User",
-      expertiseDomain: "Data Science",
-      eligibleDM: "No",
-      isModerator: false,
-      email: "user2@example.com",
-    },
-    // Add more users as needed
-  ];
+  
+  
 
   return (
     <div
-      className="
-        bg-neutral-900 
-        rounded-lg 
-        h-full 
-        w-full 
-        overflow-hidden 
-        overflow-y-auto
-        
-      "
-    >
-      <Header>
-        <div className="mb-2">
-          <h1
-            className="
-            text-white 
-              text-3xl 
-              font-semibold
-            "
-          >
-            Docs
-          </h1>
-          <div
-            className="
-              grid 
-              grid-cols-1 
-              sm:grid-cols-2 
-              xl:grid-cols-3 
-              2xl:grid-cols-4 
-              gap-3 
-              mt-4
-            "
-          ></div>
-        </div>
-      </Header>
-
-      <SwaggerUI url="https://8080-othy1010-csd-kb3s9ye71lr.ws-eu101.gitpod.io/v3/api-docs" />
+    className="
+      bg-neutral-900 
+      rounded-lg 
+      h-full 
+      w-full 
+      overflow-hidden 
+      overflow-y-auto
       
+    "
+  >
+    <Header>
+      <div className="mb-2">
+        <h1
+          className="
+          text-white 
+            text-3xl 
+            font-semibold
+          "
+        >
+          Welcome back
+        </h1>
+        <div
+          className="
+            grid 
+            grid-cols-1 
+            sm:grid-cols-2 
+            xl:grid-cols-3 
+            2xl:grid-cols-4 
+            gap-3 
+            mt-4
+          "
+        ></div>
+      </div>
+    </Header>
+    
+    <div className="m-2 px-6 ">
+      <SwaggerComponent />
     </div>
+  </div>
+    // {/* <SwaggerUI url={'/api-docs/springdocDefault'}
+    //    deepLinking={true}
+    //       docExpansion={'none'}
+    //       defaultModelsExpandDepth={-1}
+    //       requestInterceptor={(req) => {
+    //         req.headers['Authorization'] = getBearerToken();
+    //         if (req.method === 'GET' && req.body === '{"additionalProp1":"string","additionalProp2":"string","additionalProp3":"string"}') {
+    //           req.body = undefined;
+    //         }
+    //         return req;
+    //       }}
+    //     /> */}      
   );
 }
