@@ -29,22 +29,7 @@ const SwaggerComponent = async () => {
             return req;
           }}
         /> </div>
-    // <SwaggerUI 
-    //   url="https://petstore.swagger.io/v2/swagger.json"
-    //   deepLinking={true} 
-    //   filter={true}
-    //   defaultModelExpandDepth={-1}
-    //   withCredentials={true}
-    //   docExpansion='none'
-    //   requestInterceptor={(req) => {
-    //     let authToken = localStorage.getItem('jhi-authenticationToken') || sessionStorage.getItem('jhi-authenticationToken');
-    //     if (authToken) {
-    //       authToken = JSON.parse(authToken);
-    //       req.headers['Authorization'] = `Bearer ${authToken}`;
-    //     }
-    //     return req;
-    //   }}
-    // />
+   
   );
 };
 

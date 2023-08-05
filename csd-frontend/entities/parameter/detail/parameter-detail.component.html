@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="parameter">
+      <h2 data-cy="parameterDetailsHeading"><span jhiTranslate="csdApp.parameter.detail.title">Parameter</span></h2>
+
+      <hr />
+
+      <csdalert-error></csdalert-error>
+
+      <csdalert></csdalert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ parameter.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="csdApp.parameter.kind">Kind</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'csdApp.ParameterKind.' + parameter.kind }}">{{ parameter.kind }}</span>
+        </dd>
+        <dt><span jhiTranslate="csdApp.parameter.participationMethod">Participation Method</span></dt>
+        <dd>
+          <div *ngIf="parameter.participationMethod">
+            <a [routerLink]="['/participation-method', parameter.participationMethod.id, 'view']">{{ parameter.participationMethod.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/parameter', parameter.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

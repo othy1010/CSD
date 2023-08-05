@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="mitigation">
+      <h2 data-cy="mitigationDetailsHeading"><span jhiTranslate="csdApp.mitigation.detail.title">Mitigation</span></h2>
+
+      <hr />
+
+      <csdalert-error></csdalert-error>
+
+      <csdalert></csdalert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ mitigation.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="csdApp.mitigation.vulnerability">Vulnerability</span></dt>
+        <dd>
+          <span *ngFor="let vulnerability of mitigation.vulnerabilities; let last = last">
+            <a [routerLink]="['/vulnerability', vulnerability.id, 'view']">{{ vulnerability.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/mitigation', mitigation.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

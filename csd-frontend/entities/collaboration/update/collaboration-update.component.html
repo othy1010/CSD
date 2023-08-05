@@ -1,0 +1,135 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="csdcollaboration-heading"
+        data-cy="CollaborationCreateUpdateHeading"
+        jhiTranslate="csdApp.collaboration.home.createOrEditLabel"
+      >
+        Create or edit a Collaboration
+      </h2>
+
+      <div>
+        <csdalert-error></csdalert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.collaboration.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.collaboration.description" for="field_description">Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            id="field_description"
+            data-cy="description"
+            formControlName="description"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.collaboration.startDate" for="field_startDate">Start Date</label>
+          <div class="input-group">
+            <input
+              id="field_startDate"
+              data-cy="startDate"
+              type="text"
+              class="form-control"
+              name="startDate"
+              ngbDatepicker
+              #startDateDp="ngbDatepicker"
+              formControlName="startDate"
+            />
+            <button type="button" class="btn btn-secondary" (click)="startDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.collaboration.decisionDuration" for="field_decisionDuration"
+            >Decision Duration</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="decisionDuration"
+            id="field_decisionDuration"
+            data-cy="decisionDuration"
+            formControlName="decisionDuration"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.collaboration.evaluationDuration" for="field_evaluationDuration"
+            >Evaluation Duration</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="evaluationDuration"
+            id="field_evaluationDuration"
+            data-cy="evaluationDuration"
+            formControlName="evaluationDuration"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.collaboration.collaborationState" for="field_collaborationState"
+            >Collaboration State</label
+          >
+          <select
+            class="form-control"
+            name="collaborationState"
+            formControlName="collaborationState"
+            id="field_collaborationState"
+            data-cy="collaborationState"
+          >
+            <option [ngValue]="null">{{ 'csdApp.CollaborationState.null' | translate }}</option>
+            <option *ngFor="let collaborationState of collaborationStateValues" [value]="collaborationState">
+              {{ 'csdApp.CollaborationState.' + collaborationState | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.collaboration.decisionPattern" for="field_decisionPattern">Decision Pattern</label>
+          <select
+            class="form-control"
+            id="field_decisionPattern"
+            data-cy="decisionPattern"
+            name="decisionPattern"
+            formControlName="decisionPattern"
+            [compareWith]="compareDecisionPattern"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="decisionPatternOption" *ngFor="let decisionPatternOption of decisionPatternsSharedCollection">
+              {{ decisionPatternOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

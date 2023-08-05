@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="csdselection-criteria-heading"
+        data-cy="SelectionCriteriaCreateUpdateHeading"
+        jhiTranslate="csdApp.selectionCriteria.home.createOrEditLabel"
+      >
+        Create or edit a Selection Criteria
+      </h2>
+
+      <div>
+        <csdalert-error></csdalert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.selectionCriteria.criterion" for="field_criterion">Criterion</label>
+          <select class="form-control" name="criterion" formControlName="criterion" id="field_criterion" data-cy="criterion">
+            <option [ngValue]="null">{{ 'csdApp.SelectionCriteriaType.null' | translate }}</option>
+            <option *ngFor="let selectionCriteriaType of selectionCriteriaTypeValues" [value]="selectionCriteriaType">
+              {{ 'csdApp.SelectionCriteriaType.' + selectionCriteriaType | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="csdApp.selectionCriteria.participationMethod" for="field_participationMethod"
+            >Participation Method</label
+          >
+          <select
+            class="form-control"
+            id="field_participationMethod"
+            data-cy="participationMethod"
+            name="participationMethod"
+            formControlName="participationMethod"
+            [compareWith]="compareParticipationMethod"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="participationMethodOption" *ngFor="let participationMethodOption of participationMethodsSharedCollection">
+              {{ participationMethodOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

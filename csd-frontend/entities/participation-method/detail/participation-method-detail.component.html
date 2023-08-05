@@ -1,0 +1,34 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="participationMethod">
+      <h2 data-cy="participationMethodDetailsHeading">
+        <span jhiTranslate="csdApp.participationMethod.detail.title">Participation Method</span>
+      </h2>
+
+      <hr />
+
+      <csdalert-error></csdalert-error>
+
+      <csdalert></csdalert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ participationMethod.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="csdApp.participationMethod.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'csdApp.ParticipationType.' + participationMethod.type }}">{{ participationMethod.type }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/participation-method', participationMethod.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,165 @@
+<div>
+  <h2 id="page-heading" data-cy="DecisionPatternHeading">
+    <span jhiTranslate="csdApp.decisionPattern.home.title">Decision Patterns</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="csdApp.decisionPattern.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-decision-pattern"
+        [routerLink]="['/decision-pattern/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="csdApp.decisionPattern.home.createLabel"> Create a new Decision Pattern </span>
+      </button>
+    </div>
+  </h2>
+
+  <csdalert-error></csdalert-error>
+
+  <csdalert></csdalert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="decisionPatterns?.length === 0">
+    <span jhiTranslate="csdApp.decisionPattern.home.notFound">No Decision Patterns found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="decisionPatterns && decisionPatterns.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="name">
+            <div class="d-flex">
+              <span jhiTranslate="csdApp.decisionPattern.name">Name</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="description">
+            <div class="d-flex">
+              <span jhiTranslate="csdApp.decisionPattern.description">Description</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="participationMethod.id">
+            <div class="d-flex">
+              <span jhiTranslate="csdApp.decisionPattern.participationMethod">Participation Method</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="codecisionMethod.id">
+            <div class="d-flex">
+              <span jhiTranslate="csdApp.decisionPattern.codecisionMethod">Codecision Method</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="intent.id">
+            <div class="d-flex">
+              <span jhiTranslate="csdApp.decisionPattern.intent">Intent</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="solution.id">
+            <div class="d-flex">
+              <span jhiTranslate="csdApp.decisionPattern.solution">Solution</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="application.id">
+            <div class="d-flex">
+              <span jhiTranslate="csdApp.decisionPattern.application">Application</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="knowuse.id">
+            <div class="d-flex">
+              <span jhiTranslate="csdApp.decisionPattern.knowuse">Knowuse</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let decisionPattern of decisionPatterns; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/decision-pattern', decisionPattern.id, 'view']">{{ decisionPattern.id }}</a>
+          </td>
+          <td>{{ decisionPattern.name }}</td>
+          <td>{{ decisionPattern.description }}</td>
+          <td>
+            <div *ngIf="decisionPattern.participationMethod">
+              <a [routerLink]="['/participation-method', decisionPattern.participationMethod.id, 'view']">{{
+                decisionPattern.participationMethod.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="decisionPattern.codecisionMethod">
+              <a [routerLink]="['/codecision-method', decisionPattern.codecisionMethod.id, 'view']">{{
+                decisionPattern.codecisionMethod.id
+              }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="decisionPattern.intent">
+              <a [routerLink]="['/intent', decisionPattern.intent.id, 'view']">{{ decisionPattern.intent.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="decisionPattern.solution">
+              <a [routerLink]="['/solution', decisionPattern.solution.id, 'view']">{{ decisionPattern.solution.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="decisionPattern.application">
+              <a [routerLink]="['/application', decisionPattern.application.id, 'view']">{{ decisionPattern.application.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="decisionPattern.knowuse">
+              <a [routerLink]="['/knowuse', decisionPattern.knowuse.id, 'view']">{{ decisionPattern.knowuse.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/decision-pattern', decisionPattern.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/decision-pattern', decisionPattern.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(decisionPattern)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
