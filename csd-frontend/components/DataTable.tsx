@@ -1,46 +1,86 @@
-"use client"
 import * as React from 'react';
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { DataGrid } from '@mui/x-data-grid';
 
-const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-  },
-];
+import { gql } from "@apollo/client";
+import client from "@/components/apollo-client";
 
-const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-];
+interface Field {
+  name: string;
+  type: {
+    kind: string;
+    ofType: {
+      kind: string;
+    };
+  };
+  
+}
+interface Header {
+  field: string;
+  headerName: string;
+  kind: string;
+  type : string; 
+}
 
-export default function DataTable() {
+async function getHeader(head : string) {
+  const { data } = await client.query({
+    query: gql`
+    {
+      __type(name: "${head}") {
+        fields {
+          name
+          type {
+            kind
+            ofType {
+              kind
+            }
+          }
+         
+        }
+    }
+    }
+
+`,
+  });
+  const header = data.__type.fields.map((field: Field) => ({
+    field: field.name,
+    headerName: field.name,
+    minWidth: 150,
+    kind : field.type.kind,
+    type : field.type.ofType ? field.type.ofType.kind : field.type.kind
+  }));
+  const r = header.filter((item: Header) => item.kind !== 'LIST' && item.type !== 'OBJECT') 
+  
+  console.log(r)
+  return r;
+}
+
+async function getData(subject: string,fields: [Header]) {
+  const f =  fields.filter(field => field.kind !== 'LIST' && field.type !== 'OBJECT').map(item => `        ${item.field}`).join('\n');
+  const quer = `
+  query ${subject} {
+   ${subject} {
+     ${f}
+ }
+}
+`
+console.log("😒",quer)
+  const { data } = await client.query({
+    query: gql`${quer}`,
+  });
+  console.log("😒",quer,data)
+  return data[subject]
+}
+
+
+export default async function DataTable({subject,head} : { subject: string; head: string; }) {
+  const header = await getHeader(head)
+  const data = await getData(subject,header)
+  console.log("👍data ",data)
   return (
-    <div style={{ height: 400, width: '80%' }}>
+    <div style={{ height: 400, width: '100%' }}>
       <DataGrid
-        rows={rows}
-        columns={columns}
+        rows={data}
+        columns={header}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 5 },

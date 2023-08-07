@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Button from "@/components/Button";
 import CollaborationList from "@/components/CollaborationList";
 import { useRouter } from "next/navigation";
+import DataTable from "@/components/DataTable";
 
 export const revalidate = 0;
 
@@ -83,7 +84,10 @@ export default async function Home() {
         </div>
       </div>
       <div className="m-2 px-6 ">
-        <CollaborationList items={items} />
+        <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-white ">
+      <DataTable subject={"collaborations"} head={"Collaboration"}/>
+
+      </div>
       </div>
     </div>
   );

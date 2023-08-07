@@ -1,6 +1,7 @@
 import { BsThreeDots } from "react-icons/bs";
 import DataTable from "./DataTable";
 
+
 interface User {
   name: string;
   status: string;
@@ -25,7 +26,6 @@ const UserList: React.FC<UserListProps> = ({ users }) => {
             Select Collaboration Members.
           </p>
         </caption>
-        <DataTable />
     </div>
   );
 };

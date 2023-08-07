@@ -15,11 +15,6 @@ import SwaggerComponent from "@/components/Swagger";
 import axios from "axios";
 import dynamic from "next/dynamic";
 
-const SwaggerUI = dynamic(import('swagger-ui-react'), {ssr: false})
-interface DateRange {
-  startDate: Date;
-  endDate: Date;
-}
 export const revalidate = 0;
 
 export default async function Home() {

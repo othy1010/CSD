@@ -35,9 +35,9 @@ const Sidebar = ({ children }: SidebarProps) => {
       },
       {
         icon: BiGridAlt,
-        label: "Collaborations",
-        active: pathname === "/collaborations",
-        href: "/collaborations",
+        label: "Collaboration",
+        active: pathname === "/collaboration",
+        href: "/collaboration/view",
       },
       {
         icon: AiOutlineFileText,

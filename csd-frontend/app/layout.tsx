@@ -1,9 +1,12 @@
+"use client"
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Sidebar from "@/components/Sidebar";
 import ToasterProvider from "@/providers/ToasterProvider";
 import MainContent from "@/components/MainContent";
+import { ApolloProvider } from '@apollo/client';
 
+import client from "@/components/apollo-client";
 const font = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -19,13 +22,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={font.className}>
-        <ToasterProvider />
-        {/* <div style={{ display: "flex" }}> */}
-        <Sidebar>{children}</Sidebar>
-        {/* <MainContent /> */}
-        {/* </div> */}
-
-        {/* <Player /> */}
+        <ApolloProvider client={client}>
+          <ToasterProvider />
+          <Sidebar>{children}</Sidebar>
+        </ApolloProvider>
       </body>
     </html>
   );

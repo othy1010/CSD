@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: [
-    'swagger-ui-react',
-    'swagger-client',
-    'react-syntax-highlighter',    
-  ],
+  // transpilePackages: [
+  //   'swagger-ui-react',
+  //   'swagger-client',
+  //   'react-syntax-highlighter',    
+  // ],
   async rewrites() {
     return [
       {
