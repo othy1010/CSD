@@ -76,7 +76,6 @@ export default function DataTable({
         </Td>
       );
     } else {
-      console.log("cellValue", cellValue);
       return (
         <Td key={header.field}>
           <Link href={`/${routes[1]}/view/${row.id}`}>{cellValue}</Link>

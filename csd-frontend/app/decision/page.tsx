@@ -7,6 +7,7 @@ import DataTable from "@/components/DataTable";
 
 export default async function Home() {
   const router = useRouter();
+
   return (
     <div
       className="
@@ -53,14 +54,18 @@ export default async function Home() {
           </Button>
         </div>
         <div>
-          <Button  onClick={() => router.push("/collaboration/view")}className="bg-white px-4 py-1">Export</Button>
+          <Button
+            onClick={() => router.push("/collaboration/view")}
+            className="bg-white px-4 py-1"
+          >
+            Export
+          </Button>
         </div>
       </div>
       <div className="m-2 px-6 ">
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-white ">
-      <DataTable subject={"collaborations"} head={"Collaboration"}/>
-
-      </div>
+          <DataTable subject={"decisions"} head={"Decision"} />
+        </div>
       </div>
     </div>
   );

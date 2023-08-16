@@ -1,12 +1,9 @@
 import Header from "@/components/Header";
-import CButton from "@/components/Button";
-import DatePicker from "react-datepicker";
 // import Image from "next/image";
-import { MdCheckCircle, MdSettings } from "react-icons/md";
+import { MdSettings } from "react-icons/md";
 import "react-datepicker/dist/react-datepicker.css";
-import React, { ReactNode, useEffect, useState } from "react";
-import Datepick from "@/components/Datepick";
-import { Controller, useForm } from "react-hook-form";
+import React, { ReactNode } from "react";
+import { useForm } from "react-hook-form";
 import {
   FormErrorMessage,
   FormLabel,
@@ -15,23 +12,13 @@ import {
   Button,
   Image,
   Textarea,
-  Select,
-  Switch,
-  Text,
-  ButtonGroup,
-  Card,
-  CardBody,
-  CardFooter,
-  Divider,
-  Heading,
-  Stack,
   List,
   ListIcon,
   ListItem,
 } from "@chakra-ui/react";
 import { gql, useMutation } from "@apollo/client";
 import { useToast } from "@chakra-ui/react";
-import BackdropExample from "@/components/BackdropExample";
+import CustomModal from "@/components/CustomModal";
 import dayjs from "dayjs";
 
 const ADD_PROPOSAL_QUERY = gql`
@@ -56,7 +43,6 @@ export default function Create() {
 
   async function onSubmit(values: any) {
     // TODO : add validation
-    // return new Promise<void>((resolve) => {
     values.status = values.status ? "ACTIVE" : "INACTIVE";
     const x = dayjs().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
     console.log("📅⬆️❤️", dayjs(x), x);
@@ -88,11 +74,6 @@ export default function Create() {
         duration: 4000,
         isClosable: true,
       });
-      //   setTimeout(() => {
-      //     console.log(JSON.stringify(values, null, 2));
-      //     resolve();
-      //   }, 1);
-      // });
     }
   }
 
@@ -129,7 +110,9 @@ export default function Create() {
               className="flex flex-col justify-between gap-4"
             >
               <div className="flex gap-2 items-center">
-                <FormControl isInvalid={errors.collaborationName}>
+                <FormControl
+                  isInvalid={errors.collaborationName ? true : false}
+                >
                   <FormLabel htmlFor="author">Author</FormLabel>
                   <Input
                     id="author"
@@ -150,7 +133,9 @@ export default function Create() {
                     }
                   </FormErrorMessage>
                 </FormControl>
-                <FormControl isInvalid={errors.collaborationName}>
+                <FormControl
+                  isInvalid={errors.collaborationName ? true : false}
+                >
                   <FormLabel htmlFor="project">Collaboration Project</FormLabel>
                   <Input
                     id="project"
@@ -172,7 +157,7 @@ export default function Create() {
                   </FormErrorMessage>
                 </FormControl>
               </div>
-              <FormControl isInvalid={errors.collaborationName}>
+              <FormControl isInvalid={errors.collaborationName ? true : false}>
                 <FormLabel htmlFor="name">Proposal name</FormLabel>
                 <Input
                   id="name"
@@ -192,7 +177,9 @@ export default function Create() {
                   }
                 </FormErrorMessage>
               </FormControl>
-              <FormControl isInvalid={errors.collaborationDescription}>
+              <FormControl
+                isInvalid={errors.collaborationDescription ? true : false}
+              >
                 <FormLabel htmlFor="description">
                   Proposal Description
                 </FormLabel>
@@ -214,24 +201,6 @@ export default function Create() {
                   }
                 </FormErrorMessage>
               </FormControl>
-              {/* <div className="flex gap-2 items-center">
-              <FormControl isInvalid={errors.collaborationDescription}>
-                <FormLabel htmlFor="startDate">Start Date</FormLabel>
-                <Controller
-                  control={control}
-                  name="startDate"
-                  render={({ field }) => (
-                    <DatePicker
-                      className="border-2 border-gray-300 p-2 rounded-md"
-                      placeholderText="Select date"
-                      onChange={(date: any) => field.onChange(date)}
-                      selected={field.value}
-                      dateFormat="dd/MM/yyyy"
-                    />
-                  )}
-                />
-              </FormControl>
-            </div> */}
 
               <Button mt={4} isLoading={isSubmitting} type="submit">
                 Submit
@@ -266,7 +235,7 @@ export default function Create() {
                 fallbackSrc="https://via.placeholder.com/150"
               />
             </div>
-            <BackdropExample />
+            <CustomModal />
           </div>
         </div>
       </div>

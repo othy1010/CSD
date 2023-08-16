@@ -87,7 +87,11 @@ export default async function DataTable({subject,head} : { subject: string; head
           },
         }}
         pageSizeOptions={[5, 10]}
-        checkboxSelection
+        checkboxSelection = {false}
+        onRowClick={(row) => {
+          console.log("ROW ➡️: ",row);
+
+        } }
       />
     </div>
   );

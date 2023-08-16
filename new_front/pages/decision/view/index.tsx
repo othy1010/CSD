@@ -88,7 +88,6 @@ function Home({
   head,
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  console.log("👍 server EXIT", head, data);
   return (
     <div>
       <Header>

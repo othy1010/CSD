@@ -20,13 +20,15 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
       className={twMerge(
         `
         h-fit 
-        
-        p-6
+        border
+        rounded-lg
+        p-2
+        m-2
         `,
         className
       )}
     >
-      <div className="w-full mb-4 flex gap-10 items-center justify-between">
+      <div className="w-full flex gap-10 items-center justify-between ">
         <div className="hidden md:flex gap-x-2 w-full items-center">
           <InputGroup className="">
             <InputLeftElement pointerEvents="none">

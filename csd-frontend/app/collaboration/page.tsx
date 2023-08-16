@@ -5,6 +5,7 @@ import CollaborationList from "@/components/CollaborationList";
 import { useRouter } from "next/navigation";
 import DataTable from "@/components/DataTable";
 
+
 export default async function Home() {
   const router = useRouter();
   return (

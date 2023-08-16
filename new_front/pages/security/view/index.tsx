@@ -8,6 +8,15 @@ import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { gql } from "@apollo/client";
 import client from "@/components/apollo-client";
 import Link from "next/link";
+import {
+  Card,
+  CardHeader,
+  Heading,
+  CardBody,
+  CardFooter,
+  Text,
+  SimpleGrid,
+} from "@chakra-ui/react";
 interface Field {
   name: string;
   type: {
@@ -94,23 +103,84 @@ function Home({
       <Header children={undefined}></Header>
       <div
         className="p-2 m-2 border
-        rounded-lg"
+        rounded-lg "
       >
-        <div className=" my-5 flex justify-between items-center">
+        <div className=" my-5 mb-20 flex justify-between items-center">
           <h1
             className="
               text-3xl 
               font-semibold
             "
           >
-            Your Collaborations
+            Choose the Security that you want to view
           </h1>
 
-          <Link href="/collaboration/create" className="col-span-1">
-            <Button>Create Collaboration</Button>
+          <Link href="/security/import" className="">
+            <Button className=" w-60">Import a File</Button>
           </Link>
         </div>
-        <DataTable data={data} head={head} />
+        {/* <div className="  my-5 flex justify-between items-center">
+          <h1
+            className="
+              text-3xl 
+              font-semibold mb-36
+            "
+          >
+            
+          </h1>
+
+          <Link href="/collaboration/create" className="">
+            <Button>Create Collaboration</Button>
+          </Link>
+        </div> */}
+
+        <SimpleGrid
+          columns={2}
+          spacing={10}
+          templateColumns="repeat(auto-fill, minmax(300px, 2fr))"
+        >
+          <Card>
+            <CardHeader>
+              <Heading size="md"> Vulnerabilities</Heading>
+            </CardHeader>
+            <CardFooter>
+              <Button>
+                <Link href={"/vulnerability/view"}>View here</Link>
+              </Button>
+            </CardFooter>
+          </Card>
+          <Card>
+            <CardHeader>
+              <Heading size="md"> Threats</Heading>
+            </CardHeader>
+            <CardFooter>
+              <Button>
+                <Link href={"/threat/view"}>View here</Link>
+              </Button>
+            </CardFooter>
+          </Card>
+          <Card>
+            <CardHeader>
+              <Heading size="md"> Risks</Heading>
+            </CardHeader>
+            <CardFooter>
+              <Button>
+                <Link href={"/risk/view"}>View here</Link>
+              </Button>
+            </CardFooter>
+          </Card>
+          <Card>
+            <CardHeader>
+              <Heading size="md"> Mitigations</Heading>
+            </CardHeader>
+            <CardFooter>
+              <Button>
+                <Link href={"/mitigations/view"}>View here</Link>
+              </Button>
+            </CardFooter>
+          </Card>
+        </SimpleGrid>
+        {/* <DataTable data={data} head={head} /> */}
       </div>
     </div>
   );

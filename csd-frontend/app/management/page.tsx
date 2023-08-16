@@ -5,8 +5,10 @@ import CollaborationList from "@/components/CollaborationList";
 import { useRouter } from "next/navigation";
 import DataTable from "@/components/DataTable";
 
+
 export default async function Home() {
   const router = useRouter();
+ 
   return (
     <div
       className="
@@ -58,7 +60,7 @@ export default async function Home() {
       </div>
       <div className="m-2 px-6 ">
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg bg-white ">
-      <DataTable subject={"collaborations"} head={"Collaboration"}/>
+      <DataTable subject={"users"} head={"User"}/>
 
       </div>
       </div>

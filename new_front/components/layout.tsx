@@ -17,9 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex ">
+    <div className="relative w-screen h-screen">
       <Sidebar />
-      <div className="w-full">{children}</div>
+      <div className="ml-[20%] h-screen overflow-y-auto">{children}</div>
     </div>
   );
 }

@@ -139,7 +139,7 @@ export const typeDefs = `#graphql
         description: String
         reference: VulnerabilityReference
         refid: String
-        date: String    
+        date: Date  
     }
 
     enum VulnerabilityReference {

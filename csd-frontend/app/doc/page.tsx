@@ -15,7 +15,6 @@ import SwaggerComponent from "@/components/Swagger";
 import axios from "axios";
 import dynamic from "next/dynamic";
 
-export const revalidate = 0;
 
 export default async function Home() {
   

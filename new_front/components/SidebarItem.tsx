@@ -24,7 +24,7 @@ function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProps) {
         text-md 
         font-medium
         cursor-pointer
-        hover:text-white
+        hover:text-teal-500
         transition
         
         py-1`,

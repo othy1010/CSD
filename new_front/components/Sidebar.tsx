@@ -16,6 +16,7 @@ import SidebarItem from "./SidebarItem";
 import Box from "./Box";
 import { useMemo } from "react";
 import { useRouter } from "next/router";
+import { MdSecurity } from "react-icons/md";
 
 interface SidebarProps {
   children: React.ReactNode;
@@ -23,6 +24,7 @@ interface SidebarProps {
 
 function Sidebar() {
   const pathname = useRouter().pathname;
+
   const routes = pathname
     ? useMemo(
         () => [
@@ -66,10 +68,10 @@ function Sidebar() {
             href: "/report/view",
           },
           {
-            icon: RiFileChartLine,
-            label: "Docs",
-            active: pathname.startsWith("/doc"),
-            href: "/doc/view",
+            icon: MdSecurity,
+            label: "Security",
+            active: pathname.startsWith("/security"),
+            href: "/security/view",
           },
         ],
         [pathname]
@@ -77,13 +79,19 @@ function Sidebar() {
     : [];
 
   return (
-    <div className="">
+    <div className="fixed left-0 top-0 h-full w-[20%] p-2">
       <div
         className={twMerge(
-          "hidden md:flex flex-col gap-y-2 h-full w-[300px] p-2"
+          "hidden md:flex flex-col gap-y-2 h-full border border-gray-200 rounded-lg p-2"
         )}
       >
-        <Box className="flex flex-col flex-grow">
+        <div
+          className={twMerge(`flex flex-col flex-grow 
+        bg-white
+        rounded-lg 
+        h-fit 
+        w-full `)}
+        >
           <div className="flex flex-col gap-y-4 px-5 py-4 flex-grow">
             <div className="text-4xl text-white font-bold mb-4">
               <div className="flex items-center justify-center text-4xl text-black mb-4">
@@ -106,7 +114,7 @@ function Sidebar() {
               }}
             />
           </div>
-        </Box>
+        </div>
       </div>
     </div>
   );

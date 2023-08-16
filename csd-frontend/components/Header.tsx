@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
       )}
     >
       <div className="w-full mb-4 flex items-center justify-between">
-        <div className="hidden md:flex gap-x-2 items-center">Search</div>
+        <div className="hidden md:flex gap-x-2 items-center text-white">Search</div>
         <div className="flex md:hidden gap-x-2 items-center">
           <button
             className="

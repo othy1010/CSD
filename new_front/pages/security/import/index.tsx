@@ -1,32 +1,20 @@
+import DropZone from "@/components/DropZone";
 import Header from "@/components/Header";
-import DataTable from "@/components/DataTable";
 
+import React from "react";
 
-export const revalidate = 0;
-
-export default async function Home() {
-  
+export default function Create() {
   return (
-    <div
-      className="
-        bg-neutral-100 
-        rounded-lg 
-        h-full 
-        w-full 
-        overflow-hidden 
-        overflow-y-auto
-        
-      "
-    >
+    <div>
       <Header>
-        <div className="mb-2">
+        <div className="mb-2 mt-10">
           <h1
             className="
               text-3xl 
               font-semibold
             "
           >
-            Decisions
+            Import a File
           </h1>
           <div
             className="
@@ -41,7 +29,12 @@ export default async function Home() {
           ></div>
         </div>
       </Header>
-      <DataTable />
+
+      <div className="m-2 px-6">
+        <div className=" bg-white w-3/6">
+          <DropZone />
+        </div>
+      </div>
     </div>
   );
 }
