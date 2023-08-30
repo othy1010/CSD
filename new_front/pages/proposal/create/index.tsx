@@ -15,11 +15,15 @@ import {
   List,
   ListIcon,
   ListItem,
+  Select,
 } from "@chakra-ui/react";
 import { gql, useMutation } from "@apollo/client";
 import { useToast } from "@chakra-ui/react";
 import CustomModal from "@/components/CustomModal";
 import dayjs from "dayjs";
+import { get } from "http";
+import { getCollaboration } from "@/components/ApiQueries";
+import { GetServerSidePropsContext } from "next";
 
 const ADD_PROPOSAL_QUERY = gql`
   mutation Addmutation($proposal: AddProposalInput!) {
@@ -28,8 +32,20 @@ const ADD_PROPOSAL_QUERY = gql`
     }
   }
 `;
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+  const collaboration = await getCollaboration({ name: true });
+  console.log(
+    "🚀 ~ file: index.tsx:37 ~ getServerSideProps ~ collaboration:",
+    collaboration
+  );
+  // console.log("👍user server ENTER", context, collaboration, data);
 
-export default function Create() {
+  return { props: { collaboration } };
+}
+
+export default function Create({ collaboration }: { collaboration: any }) {
+  console.log("🚀 ~ file: index.tsx:47 ~ collaboration:", collaboration);
+
   const toast = useToast();
   const [addProposal, { data, loading, error }] =
     useMutation(ADD_PROPOSAL_QUERY);
@@ -133,32 +149,35 @@ export default function Create() {
                     }
                   </FormErrorMessage>
                 </FormControl>
-                <FormControl
-                  isInvalid={errors.collaborationName ? true : false}
-                >
-                  <FormLabel htmlFor="project">Collaboration Project</FormLabel>
-                  <Input
-                    id="project"
-                    placeholder="Project"
-                    value={"Project"}
-                    {...register("project", {
+                <FormControl isInvalid={errors.collaborationDescription}>
+                  <FormLabel htmlFor="decisionPattern">
+                    Collaboration Project
+                  </FormLabel>
+                  <Select
+                    id="collaborationProject"
+                    placeholder="Choose a Collaboration Project"
+                    color={"gray.500"}
+                    {...register("collaborationProject", {
                       required: "This is required",
-                      minLength: {
-                        value: 4,
-                        message: "Minimum length should be 4",
-                      },
                     })}
-                  />
+                  >
+                    {collaboration?.collaborations.map((c: any) => (
+                      <option key={c.id} value={c.id}>
+                        {c.name}
+                      </option>
+                    ))}
+                  </Select>
+
                   <FormErrorMessage>
                     {
-                      (errors.collaborationName &&
-                        errors.collaborationName.message) as ReactNode
+                      (errors.collaborationDescription &&
+                        errors.collaborationDescription.message) as ReactNode
                     }
                   </FormErrorMessage>
                 </FormControl>
               </div>
               <FormControl isInvalid={errors.collaborationName ? true : false}>
-                <FormLabel htmlFor="name">Proposal name</FormLabel>
+                <FormLabel htmlFor="name">Proposal Title</FormLabel>
                 <Input
                   id="name"
                   placeholder="name"

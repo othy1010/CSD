@@ -1,71 +1,33 @@
 import { Textarea, Button, Flex, Box } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ScriptEditor, { MonacoOnInitializePane } from "./monacoCodeListing";
 import { FaCheckCircle } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
 
-function CodeListing({ className }: { className?: string }) {
-  const x = {
-    nodes: [
-      {
-        id: "1",
-        type: "custom",
-        data: {
-          name: "Attack Goal",
-          job: "",
-        },
-        position: { x: 0, y: 0 },
-      },
-      {
-        id: "2",
-        type: "custom",
-        data: {
-          name: "Attack Objective 1",
-          job: "email",
-        },
-        position: { x: 0, y: 200 },
-      },
-      {
-        id: "3",
-        type: "custom",
-        data: {
-          name: "Attack Objective 2",
-          job: "media",
-        },
-        position: { x: 400, y: 200 },
-      },
-      {
-        id: "4",
-        type: "custom",
-        data: {
-          name: "Attack Objective 3",
-          job: "Mobile App",
-        },
-        position: { x: 800, y: 200 },
-      },
-      {
-        id: "5",
-        type: "custom",
-        data: {
-          name: "Attack Cost",
-          job: "10.000$",
-        },
-        position: { x: 400, y: 400 },
-      },
-      {
-        id: "6",
-        type: "custom",
-        data: {
-          name: "Attack Cost",
-          job: "5.000$",
-        },
-        position: { x: 800, y: 400 },
-      },
-    ],
-  };
-  const myJSON = JSON.stringify(x, null, 2);
+function CodeListing({
+  className,
+  nodes,
+  setNodes,
+}: {
+  className?: string;
+  nodes: any;
+  setNodes: any;
+}) {
+  const myJSON = JSON.stringify(nodes, null, 2);
   const [code, setCode] = useState<string>(myJSON);
 
+  useEffect(() => {
+    setCode(myJSON);
+  }, [nodes]);
+
+  // useEffect(() => {
+  //   try {
+  //     const parsedCode = JSON.parse(code);
+  //     setNodes(parsedCode);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [code]);
   const onInitializePane: MonacoOnInitializePane = (
     monacoEditorRef,
     editorRef,

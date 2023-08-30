@@ -41,10 +41,10 @@ function Sidebar() {
             href: "/proposal/view",
           },
           {
-            icon: BiUser,
-            label: "User Management",
-            active: pathname.startsWith("/management"),
-            href: "/management/view",
+            icon: MdSecurity,
+            label: "Security",
+            active: pathname.startsWith("/security"),
+            href: "/security/view",
           },
           {
             icon: AiOutlineCheckCircle,
@@ -68,10 +68,10 @@ function Sidebar() {
             href: "/report/view",
           },
           {
-            icon: MdSecurity,
-            label: "Security",
-            active: pathname.startsWith("/security"),
-            href: "/security/view",
+            icon: BiUser,
+            label: "User Management",
+            active: pathname.startsWith("/management"),
+            href: "/management/view",
           },
         ],
         [pathname]

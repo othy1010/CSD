@@ -8,15 +8,6 @@ import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
 import { gql } from "@apollo/client";
 import client from "@/components/apollo-client";
 import Link from "next/link";
-import {
-  Card,
-  CardHeader,
-  Heading,
-  CardBody,
-  CardFooter,
-  Text,
-  SimpleGrid,
-} from "@chakra-ui/react";
 interface Field {
   name: string;
   type: {
@@ -87,8 +78,8 @@ async function getData(subject: string, fields: [Header]) {
   return data[subject];
 }
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const head = await getHeader("Collaboration");
-  const data = await getData("collaborations", head);
+  const head = await getHeader("Vulnerability");
+  const data = await getData("vulnerabilities", head);
   // console.log("👍user server ENTER", context, head, data);
 
   return { props: { head, data } };
@@ -103,84 +94,23 @@ function Home({
       <Header children={undefined}></Header>
       <div
         className="p-2 m-2 border
-        rounded-lg "
+        rounded-lg"
       >
-        <div className=" my-5 mb-20 flex justify-between items-center">
+        <div className=" my-5 flex justify-between items-center">
           <h1
             className="
               text-3xl 
               font-semibold
             "
           >
-            Security Concepts
+            Vulnerabilities
           </h1>
 
           <Link href="/security/import" className="">
             <Button className=" w-60">Import a File</Button>
           </Link>
         </div>
-        {/* <div className="  my-5 flex justify-between items-center">
-          <h1
-            className="
-              text-3xl 
-              font-semibold mb-36
-            "
-          >
-            
-          </h1>
-
-          <Link href="/collaboration/create" className="">
-            <Button>Create Collaboration</Button>
-          </Link>
-        </div> */}
-
-        <SimpleGrid
-          columns={2}
-          spacing={10}
-          templateColumns="repeat(auto-fill, minmax(300px, 2fr))"
-        >
-          <Card>
-            <CardHeader>
-              <Heading size="md"> Vulnerabilities</Heading>
-            </CardHeader>
-            <CardFooter>
-              <Button>
-                <Link href={"/vulnerability/view"}>View here</Link>
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardHeader>
-              <Heading size="md"> Threats</Heading>
-            </CardHeader>
-            <CardFooter>
-              <Button>
-                <Link href={"/threat/view"}>View here</Link>
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardHeader>
-              <Heading size="md"> Risks</Heading>
-            </CardHeader>
-            <CardFooter>
-              <Button>
-                <Link href={"/risk/view"}>View here</Link>
-              </Button>
-            </CardFooter>
-          </Card>
-          <Card>
-            <CardHeader>
-              <Heading size="md"> Mitigations</Heading>
-            </CardHeader>
-            <CardFooter>
-              <Button>
-                <Link href={"/mitigation/view"}>View here</Link>
-              </Button>
-            </CardFooter>
-          </Card>
-        </SimpleGrid>
-        {/* <DataTable data={data} head={head} /> */}
+        <DataTable data={data} head={head} />
       </div>
     </div>
   );

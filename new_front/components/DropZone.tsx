@@ -5,11 +5,13 @@ import { gql, useMutation } from "@apollo/client";
 import dayjs from "dayjs";
 import { useToast } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+
 const Dropzone = () => {
   const toast = useToast();
 
   const router = useRouter();
-  const ADD_VULNERABILITY = gql`
+
+  const ADD_VULNERABILITY_QUERY = gql`
     mutation AddVulnerability($vulnerability: AddVulnerabilityInput!) {
       addVulnerability(vulnerability: $vulnerability) {
         id
@@ -17,13 +19,16 @@ const Dropzone = () => {
       }
     }
   `;
-  const [addVulnerability, { data, loading, error }] =
-    useMutation(ADD_VULNERABILITY);
+  const [addVulnerability, { data, loading, error }] = useMutation(
+    ADD_VULNERABILITY_QUERY
+  );
+
   const onDrop = async (acceptedFiles: any[]) => {
     if (!acceptedFiles || acceptedFiles.length === 0) {
       console.warn("No files provided.");
       return;
     }
+
     acceptedFiles.forEach((file) => {
       const reader = new FileReader();
 
@@ -42,12 +47,17 @@ const Dropzone = () => {
               "YYYY-MM-DDTHH:mm:ss.SSS[Z]"
             ),
           };
+          console.log(
+            "🚀 ~ file: DropZone.tsx:45 ~ reader.onload= ~ variables:",
+            variables
+          );
 
           await AddVulnerability(variables);
         } catch (error) {
           console.error("Error processing the uploaded file:", error);
         }
       };
+      reader.readAsText(file);
 
       if (error) {
         toast({

@@ -19,11 +19,14 @@ import {
   ListItem,
   Input,
 } from "@chakra-ui/react";
-import { useState } from "react";
-import NodeDiagram from "./NodeDiagram";
+import { useEffect, useState } from "react";
+import NodeDiagram from "./DiagramManip/NodeDiagram";
 import CodeListing from "./CodeListing";
 import { MdCheckCircle, MdSettings } from "react-icons/md";
-import NodeField from "./NodeField";
+import NodeField from "./DiagramManip/NodeField";
+import { MarkerType, useEdgesState, useNodesState } from "reactflow";
+import NodeFields from "./DiagramManip/NodeFields";
+import EcoreConverter from "./DiagramManip/EcoreConverter";
 //create a typescropt interface that'S called Node from a modal
 interface Node {
   id: string;
@@ -45,136 +48,68 @@ enum Types {
 }
 const initNodes = [
   {
-    id: "1",
+    id: "B",
     type: "custom",
     data: {
-      name: "Attack Goal",
+      name: "Class A",
+      isProblematic: true,
       fields: [
         {
-          id: "1",
-          name: "ID",
-          type: "number",
-          value: "1",
-        },
-      ],
-    },
-    position: { x: 0, y: 0 },
-  },
-  {
-    id: "2",
-    type: "custom",
-    data: {
-      name: "Attack Objective 1",
-      fields: [
-        {
-          id: "1",
-          name: "ID",
-          type: "number",
-          value: "1",
-        },
-      ],
-    },
-    position: { x: 0, y: 200 },
-  },
-  {
-    id: "3",
-    type: "custom",
-    data: {
-      name: "Attack Objective 2",
-      fields: [
-        {
-          id: "1",
-          name: "ID",
-          type: "number",
-          value: "1",
-        },
-      ],
-    },
-    position: { x: 400, y: 200 },
-  },
-  {
-    id: "4",
-    type: "custom",
-    data: {
-      name: "Attack Objective 3",
-      fields: [
-        {
-          id: "1",
-          name: "ID",
-          type: "number",
-          value: "1",
-        },
-        {
-          id: "2",
-          name: "name",
+          id: "content",
+          name: "content",
           type: "string",
-          value: "name",
+          value:
+            "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString",
         },
       ],
     },
-    position: { x: 800, y: 200 },
+    position: {
+      x: 0,
+      y: 0,
+    },
   },
   {
-    id: "5",
+    id: "G",
     type: "custom",
     data: {
-      name: "Attack Cost",
+      name: "Class B",
       fields: [
         {
-          id: "1",
-          name: "ID",
-          type: "number",
-          value: "1",
+          id: "content",
+          name: "content",
+          type: "string",
+          value:
+            "ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString",
         },
       ],
     },
-    position: { x: 400, y: 400 },
-  },
-  {
-    id: "6",
-    type: "custom",
-    data: {
-      name: "Attack Cost",
-      fields: [
-        {
-          id: "1",
-          name: "ID",
-          type: "number",
-          value: "1",
-        },
-      ],
+    position: {
+      x: 200,
+      y: 300,
     },
-    position: { x: 800, y: 400 },
   },
 ];
 
 const initEdges = [
   {
-    id: "e1-2",
-    source: "1",
-    target: "2",
-  },
-  {
-    id: "e1-3",
-    source: "1",
-    target: "3",
-  },
-  {
-    id: "e1-4",
-    source: "1",
-    target: "4",
-  },
-  {
-    id: "e3-5",
-    source: "3",
-    target: "5",
-  },
-  {
-    id: "e4-6",
-    source: "4",
-    target: "6",
+    id: "B->G",
+    source: "B",
+    target: "G",
+    markerEnd: "compositionSVG",
+    type: "smoothstep",
+    // markerEnd: {
+    //   type: MarkerType.ArrowClosed,
+    //   width: 20,
+    //   height: 20,
+    //   color: "#000000",
+    // },
+    style: {
+      strokeWidth: 2,
+      stroke: "#000000",
+    },
   },
 ];
+
 export default function CustomModal() {
   const OverlayOne = () => (
     <ModalOverlay
@@ -185,14 +120,32 @@ export default function CustomModal() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = useState(<OverlayOne />);
-  const [nodes, setNodes] = useState(initNodes);
-  const [edges, setEdges] = useState(initEdges);
+
+  const [nodes, setNodes, onNodesChange] = useNodesState(initNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(initEdges);
   const [nodeId, setNodeId] = useState("1");
-  console.log(
-    "🚀 ~ file: CustomModal.tsx:190 ~ CustomModal ~ nodeId:",
-    +nodeId - 1,
-    initNodes[+nodeId - 1]
-  );
+
+  const handleNodeFieldChange = (
+    nodeId: string,
+    fieldId: string,
+    newValue: any
+  ) => {
+    const updatedNodes = nodes.map((node) => {
+      if (node.id === nodeId) {
+        const updatedFields = node.data.fields.map((field) => {
+          if (field.id === fieldId) {
+            return { ...field, value: newValue };
+          }
+          return field;
+        });
+
+        return { ...node, data: { ...node.data, fields: updatedFields } };
+      }
+      return node;
+    });
+
+    setNodes(updatedNodes);
+  };
 
   return (
     <>
@@ -207,8 +160,15 @@ export default function CustomModal() {
 
       <Modal isCentered isOpen={isOpen} onClose={onClose} size={"6xl"}>
         {overlay}
-        <ModalContent className=" h-[40rem] max-h-[40rem]">
-          <ModalHeader>Create a new Model</ModalHeader>
+        <ModalContent className=" z-0 h-[40rem] max-h-[40rem]">
+          <ModalHeader>
+            <div className="flex items-center gap-2">
+              <div className="">Create a new Model</div>
+              <div className="">
+                <EcoreConverter setNodes={setNodes} setEdges={setEdges} />
+              </div>
+            </div>
+          </ModalHeader>
           <ModalCloseButton />
           <ModalBody className="flex">
             <div className="flex-1">
@@ -224,20 +184,19 @@ export default function CustomModal() {
                 </TabList>
                 <TabPanels className=" ">
                   <TabPanel className=" h-full ">
-                    <List spacing={3}>
-                      {nodes[+nodeId - 1].data.fields.map((field) => (
-                        <ListItem className="">
-                          <NodeField
-                            id={field.id}
-                            name={field.name}
-                            value={field.value}
-                          />
-                        </ListItem>
-                      ))}
-                    </List>
+                    <NodeFields
+                      node={nodes.find((n) => n.id === nodeId)}
+                      onFieldChange={handleNodeFieldChange}
+                      setNodes={setNodes}
+                    />
                   </TabPanel>
+
                   <TabPanel>
-                    <CodeListing className=" h-[26rem] flex-1" />
+                    <CodeListing
+                      className=" h-[26rem] flex-1"
+                      nodes={nodes}
+                      setNodes={setNodes}
+                    />
                   </TabPanel>
                 </TabPanels>
               </Tabs>
@@ -245,9 +204,13 @@ export default function CustomModal() {
 
             <div className="flex-1 bg-black">
               <NodeDiagram
-                initNodes={nodes}
-                initEdges={edges}
+                nodes={nodes}
+                edges={edges}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
                 setNodeId={setNodeId}
+                setEdges={setEdges}
+                setNodes={setNodes}
               />
             </div>
           </ModalBody>
