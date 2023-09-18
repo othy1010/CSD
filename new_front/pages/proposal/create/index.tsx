@@ -22,7 +22,7 @@ import { useToast } from "@chakra-ui/react";
 import CustomModal from "@/components/CustomModal";
 import dayjs from "dayjs";
 import { get } from "http";
-import { getCollaboration } from "@/components/ApiQueries";
+import { getCollaboration, getVulnerabilities } from "@/components/ApiQueries";
 import { GetServerSidePropsContext } from "next";
 
 const ADD_PROPOSAL_QUERY = gql`
@@ -34,18 +34,20 @@ const ADD_PROPOSAL_QUERY = gql`
 `;
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const collaboration = await getCollaboration({ name: true });
-  console.log(
-    "🚀 ~ file: index.tsx:37 ~ getServerSideProps ~ collaboration:",
-    collaboration
-  );
+  const vulnerabilities = await getVulnerabilities();
+
   // console.log("👍user server ENTER", context, collaboration, data);
 
-  return { props: { collaboration } };
+  return { props: { collaboration, vulnerabilities } };
 }
 
-export default function Create({ collaboration }: { collaboration: any }) {
-  console.log("🚀 ~ file: index.tsx:47 ~ collaboration:", collaboration);
-
+export default function Create({
+  collaboration,
+  vulnerabilities,
+}: {
+  collaboration: any;
+  vulnerabilities: any;
+}) {
   const toast = useToast();
   const [addProposal, { data, loading, error }] =
     useMutation(ADD_PROPOSAL_QUERY);

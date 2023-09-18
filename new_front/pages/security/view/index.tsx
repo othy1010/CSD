@@ -161,6 +161,16 @@ function Home({
           </Card>
           <Card>
             <CardHeader>
+              <Heading size="md"> Weaknesses</Heading>
+            </CardHeader>
+            <CardFooter>
+              <Button>
+                <Link href={"/threat/view"}>View here</Link>
+              </Button>
+            </CardFooter>
+          </Card>
+          <Card>
+            <CardHeader>
               <Heading size="md"> Risks</Heading>
             </CardHeader>
             <CardFooter>

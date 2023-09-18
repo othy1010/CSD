@@ -90,6 +90,24 @@ async function getVulnerabilities(): Promise<any> {
   console.log("🚀 ~ file: ApiQueries.ts:91 ~ getVulnerabilities ~ data:", data);
   return data;
 }
+async function getRisks(): Promise<any> {
+  const { data } = await client.query({
+    query: gql`
+      query Risks {
+        risks {
+          id
+          name
+          description
+          reference
+          refid
+          impactseverity
+        }
+      }
+    `,
+  });
+  console.log("🚀 ~ file: ApiQueries.ts:108 ~ getRisks ~ data:", data);
+  return data;
+}
 export {
   ADD_PROPOSAL_QUERY,
   ADD_VULNERABILITY_QUERY,
@@ -97,4 +115,5 @@ export {
   ADD_USER_QUERY,
   getCollaboration,
   getVulnerabilities,
+  getRisks,
 };

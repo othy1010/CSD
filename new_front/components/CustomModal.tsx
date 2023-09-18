@@ -18,6 +18,7 @@ import {
   ListIcon,
   ListItem,
   Input,
+  Tooltip,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import NodeDiagram from "./DiagramManip/NodeDiagram";
@@ -27,6 +28,9 @@ import NodeField from "./DiagramManip/NodeField";
 import { MarkerType, useEdgesState, useNodesState } from "reactflow";
 import NodeFields from "./DiagramManip/NodeFields";
 import EcoreConverter from "./DiagramManip/EcoreConverter";
+import { BsExclamationCircleFill, BsBugFill } from "react-icons/bs";
+import { FaShieldVirus } from "react-icons/fa";
+import { FiUploadCloud } from "react-icons/fi";
 //create a typescropt interface that'S called Node from a modal
 interface Node {
   id: string;
@@ -167,6 +171,19 @@ export default function CustomModal() {
               <div className="">
                 <EcoreConverter setNodes={setNodes} setEdges={setEdges} />
               </div>
+              <Button
+                leftIcon={<FiUploadCloud />}
+                variant="solid"
+                className="bg-green-100 text-blue-800"
+                onClick={() => {
+                  const fileInput = document.getElementById("ecoreFileInput");
+                  if (fileInput) {
+                    fileInput.click();
+                  }
+                }}
+              >
+                Export to Ecore Model
+              </Button>
             </div>
           </ModalHeader>
           <ModalCloseButton />
@@ -179,8 +196,8 @@ export default function CustomModal() {
                 className="h-full"
               >
                 <TabList>
-                  <Tab>Tab 1</Tab>
-                  <Tab>Tab 2</Tab>
+                  <Tab>Entities</Tab>
+                  <Tab>CSD diagram DSL</Tab>
                 </TabList>
                 <TabPanels className=" ">
                   <TabPanel className=" h-full ">

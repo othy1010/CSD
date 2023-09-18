@@ -11,7 +11,7 @@ import ReactFlow, {
 } from "reactflow";
 import "reactflow/dist/base.css";
 
-import CustomNode from "@/components/DiagramManip/CustomNode";
+import CustomNode from "@/components/DiagramManip/NodeTypes/CustomNode";
 import CustomFloatingEdge from "./floatingedge/CustomEdge";
 import FloatingConnectionLine from "./floatingedge/FloatingConnectionLine";
 import { Button } from "@chakra-ui/react";
@@ -20,9 +20,15 @@ import { FcFolder, FcRefresh } from "react-icons/fc";
 import ContextMenu from "./contextMenu";
 import { getVulnerabilities } from "../ApiQueries";
 import { GetServerSidePropsContext } from "next";
+import { GiBorderedShield } from "react-icons/gi";
+import VulnerabilityNode from "./NodeTypes/VulnerabilityNode";
+import RiskNode from "./NodeTypes/RiskNode";
 
 const nodeTypes = {
   custom: CustomNode,
+  risk: RiskNode,
+  threat: VulnerabilityNode,
+  vulnerability: VulnerabilityNode,
 };
 
 const edgeTypes = {
@@ -187,7 +193,13 @@ function NodeDiagram({
             <FcFolder />
             add a new Class
           </div>
-
+          <div
+            className="flex gap-2 p-1 flex-row items-center border-b-2 cursor-pointer"
+            onClick={() => {}}
+          >
+            <GiBorderedShield />
+            Security Mode
+          </div>
           <div
             className="flex gap-2 p-1 flex-row items-center cursor-pointer"
             onClick={() => {

@@ -30,6 +30,7 @@ export default function NodeFields({
   onFieldChange: any;
   setNodes: any;
 }) {
+  // console.log("🚀 ~ file: NodeFields.tsx:33 ~ node:", node);
   /* Here's a custom control */
   function EditableControls() {
     const {
