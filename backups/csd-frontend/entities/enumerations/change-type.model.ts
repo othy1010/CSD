@@ -1,7 +1,0 @@
-export enum ChangeType {
-  ADDEDELT = 'ADDEDELT',
-
-  DELETEDELT = 'DELETEDELT',
-
-  MODIFIEDELT = 'MODIFIEDELT',
-}
