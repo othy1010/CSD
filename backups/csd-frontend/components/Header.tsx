@@ -1,3 +1,5 @@
+"use client";
+
 import { twMerge } from "tailwind-merge";
 import { RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { useRouter } from "next/navigation";
@@ -7,7 +9,6 @@ import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 
 import Button from "./Button";
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 
 interface HeaderProps {
   children: React.ReactNode;
@@ -20,23 +21,14 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
       className={twMerge(
         `
         h-fit 
-        border
-        rounded-lg
-        p-2
-        m-2
+        
+        p-6
         `,
         className
       )}
     >
-      <div className="w-full flex gap-10 items-center justify-between ">
-        <div className="hidden md:flex gap-x-2 w-full items-center">
-          <InputGroup className="">
-            <InputLeftElement pointerEvents="none">
-              <BiSearch className="text-gray-400" />
-            </InputLeftElement>
-            <Input placeholder="Search" size="md" />
-          </InputGroup>
-        </div>
+      <div className="w-full mb-4 flex items-center justify-between">
+        <div className="hidden md:flex gap-x-2 items-center text-white">Search</div>
         <div className="flex md:hidden gap-x-2 items-center">
           <button
             className="
@@ -57,6 +49,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
             className="
               rounded-full 
               p-2 
+              bg-white 
               flex 
               items-center 
               justify-center 
@@ -64,12 +57,14 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
               hover:opacity-75 
               transition
             "
-          ></button>
+          >
+            <BiSearch className="text-black" size={20} />
+          </button>
         </div>
         <div className="flex justify-between items-center gap-x-4">
           {true ? (
             <div className="flex gap-x-4 items-center">
-              <Button className=" px-6 py-2">Logout</Button>
+              <Button className="bg-white px-6 py-2">Logout</Button>
               <Button className="bg-white">
                 <FaUserAlt />
               </Button>
@@ -80,6 +75,7 @@ const Header: React.FC<HeaderProps> = ({ children, className }) => {
                 <Button
                   className="
                     bg-transparent 
+                    text-neutral-300 
                     font-medium
                   "
                 >

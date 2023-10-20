@@ -1,9 +1,18 @@
-import * as React from 'react';
-import { DataGrid } from '@mui/x-data-grid';
+import {
+  Table,
+  TableCaption,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
+} from "@chakra-ui/react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import * as React from "react";
 
-import { gql } from "@apollo/client";
-import client from "@/components/apollo-client";
-
+import dayjs from "dayjs";
+import { HiCheckCircle, HiXCircle } from "react-icons/hi";
 interface Field {
   name: string;
   type: {
@@ -12,87 +21,90 @@ interface Field {
       kind: string;
     };
   };
-  
 }
 interface Header {
   field: string;
   headerName: string;
+  minWidth: number;
   kind: string;
-  type : string; 
+  type: string;
 }
 
-async function getHeader(head : string) {
-  const { data } = await client.query({
-    query: gql`
-    {
-      __type(name: "${head}") {
-        fields {
-          name
-          type {
-            kind
-            ofType {
-              kind
-            }
-          }
-         
-        }
+export default function DataTable({
+  data,
+  head,
+}: {
+  data: any;
+  head: Header[];
+}) {
+  const isDateField = (fieldName: string) =>
+    fieldName.toLowerCase().includes("date") ||
+    fieldName.toLowerCase().includes("time") ||
+    fieldName.toLowerCase().includes("duration");
+  const formatDate = (dateValue: string) => {
+    let date = new Date(dateValue);
+    if (isNaN(date.getTime())) {
+      console.log("Invalid Date", dayjs(dateValue));
+      date = dayjs(dateValue).toDate();
     }
+    const day = date.getDate();
+    const month = date.toLocaleString("default", { month: "long" });
+    const year = date.getFullYear();
+    return `${day} ${month} ${year}`;
+  };
+  const renderTableCell = (row: any, header: Header) => {
+    const pathname = useRouter().pathname;
+    const routes = pathname.split("/");
+
+    const cellValue = row[header.field];
+    if (isDateField(header.field) && cellValue) {
+      const formattedDate = formatDate(cellValue);
+      return (
+        <Td key={header.field}>
+          <Link href={`/${routes[1]}/view/${row.id}`}>{formattedDate}</Link>
+        </Td>
+      );
+    } else if (typeof cellValue === "boolean") {
+      const icon = cellValue ? (
+        <HiCheckCircle className="text-green-500 text-xl" />
+      ) : (
+        <HiXCircle className="text-red-500 text-xl" />
+      );
+      return (
+        <Td key={header.field}>
+          <Link href={`/${routes[1]}/view/${row.id}`}>{icon}</Link>
+        </Td>
+      );
+    } else {
+      return (
+        <Td key={header.field}>
+          <Link href={`/${routes[1]}/view/${row.id}`}>{cellValue}</Link>
+        </Td>
+      );
     }
+  };
 
-`,
-  });
-  const header = data.__type.fields.map((field: Field) => ({
-    field: field.name,
-    headerName: field.name,
-    minWidth: 150,
-    kind : field.type.kind,
-    type : field.type.ofType ? field.type.ofType.kind : field.type.kind
-  }));
-  const r = header.filter((item: Header) => item.kind !== 'LIST' && item.type !== 'OBJECT') 
-  
-  console.log(r)
-  return r;
-}
-
-async function getData(subject: string,fields: [Header]) {
-  const f =  fields.filter(field => field.kind !== 'LIST' && field.type !== 'OBJECT').map(item => `        ${item.field}`).join('\n');
-  const quer = `
-  query ${subject} {
-   ${subject} {
-     ${f}
- }
-}
-`
-console.log("😒",quer)
-  const { data } = await client.query({
-    query: gql`${quer}`,
-  });
-  console.log("😒",quer,data)
-  return data[subject]
-}
-
-
-export default async function DataTable({subject,head} : { subject: string; head: string; }) {
-  const header = await getHeader(head)
-  const data = await getData(subject,header)
-  console.log("👍data ",data)
   return (
-    <div style={{ height: 400, width: '100%' }}>
-      <DataGrid
-        rows={data}
-        columns={header}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
-          },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection = {false}
-        onRowClick={(row) => {
-          console.log("ROW ➡️: ",row);
-
-        } }
-      />
+    <div>
+      <Table variant="simple">
+        <TableCaption>DataTable</TableCaption>
+        <Thead>
+          <Tr>
+            {head.map((header) => (
+              <Th key={header.field} minWidth={header.minWidth}>
+                {header.headerName}
+              </Th>
+            ))}
+          </Tr>
+        </Thead>
+        <Tbody>
+          {data.map((row: any, rowIndex: any) => (
+            <Tr key={rowIndex}>
+              {head.map((header) => renderTableCell(row, header))}
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
     </div>
   );
 }

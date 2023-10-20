@@ -9,7 +9,12 @@ interface SidebarItemProps {
   href: string;
 }
 
-function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProps) {
+const SidebarItem: React.FC<SidebarItemProps> = ({
+  icon: Icon,
+  label,
+  active,
+  href,
+}) => {
   return (
     <Link
       href={href}
@@ -24,17 +29,17 @@ function SidebarItem({ icon: Icon, label, active, href }: SidebarItemProps) {
         text-md 
         font-medium
         cursor-pointer
-        hover:text-teal-500
+        hover:text-white
         transition
-        
+        text-neutral-400
         py-1`,
-        active && "text-blue-500"
+        active && "text-white"
       )}
     >
       <Icon size={26} />
       <p className="truncate w-100">{label}</p>
     </Link>
   );
-}
+};
 
 export default SidebarItem;
