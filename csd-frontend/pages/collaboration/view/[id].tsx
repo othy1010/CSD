@@ -64,6 +64,14 @@ export default function View({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const toast = useToast();
+
+  const {
+    control,
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm();
+  
   console.log("from the client", data);
   if (!data) {
     toast({
@@ -76,12 +84,7 @@ export default function View({
     return <div>Unable to find the collaboration</div>;
   }
 
-  const {
-    control,
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
-  } = useForm();
+  
 
   return (
     <div>

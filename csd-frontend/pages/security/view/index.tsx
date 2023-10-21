@@ -100,7 +100,7 @@ function Home({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <div>
-      <Header children={undefined}></Header>
+      <Header><></></Header>
       <div
         className="p-2 m-2 border
         rounded-lg "

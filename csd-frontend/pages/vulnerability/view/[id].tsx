@@ -70,6 +70,13 @@ export default function View({
     return `${day} ${month} ${year}`;
   };
   const toast = useToast();
+  
+  const {
+    control,
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm();
   if (!data) {
     toast({
       title: "Not found.",
@@ -81,16 +88,10 @@ export default function View({
     return <div>Unable to find the Vulnerability</div>;
   }
 
-  const {
-    control,
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
-  } = useForm();
 
   return (
     <div>
-      <Header children={undefined}></Header>
+      <Header><></></Header>
       <div
         className="p-2 m-2 border
         rounded-lg"

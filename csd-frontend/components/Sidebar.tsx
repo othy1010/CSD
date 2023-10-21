@@ -10,73 +10,72 @@ import { RiFileChartLine } from "react-icons/ri";
 import { GiBorderedShield } from "react-icons/gi";
 
 import { twMerge } from "tailwind-merge";
-import { usePathname } from "next/navigation";
-
-import SidebarItem from "./SidebarItem";
-import Box from "./Box";
 import { useMemo } from "react";
 import { useRouter } from "next/router";
 import { MdSecurity } from "react-icons/md";
 
+import SidebarItem from "./SidebarItem";
+import Box from "./Box";
+
 interface SidebarProps {
   children: React.ReactNode;
 }
-
 function Sidebar() {
   const pathname = useRouter().pathname;
 
-  const routes = pathname
-    ? useMemo(
-        () => [
-          {
-            icon: BiGridAlt,
-            label: "Collaboration",
-            active: pathname.startsWith("/collaboration"),
-            href: "/collaboration/view",
-          },
-          {
-            icon: AiOutlineFileText,
-            label: "Proposals",
-            active: pathname.startsWith("/proposal"),
-            href: "/proposal/view",
-          },
-          {
-            icon: MdSecurity,
-            label: "Security",
-            active: pathname.startsWith("/security"),
-            href: "/security/view",
-          },
-          {
-            icon: AiOutlineCheckCircle,
-            label: "Decisions",
-            active:
-              pathname.startsWith("/decision") &&
-              !pathname.startsWith("/decision-pattern"),
-            href: "/decision/view",
-          },
-          {
-            icon: AiOutlineApi,
-            label: "Decision Patterns",
-            active: pathname.startsWith("/decision-pattern"),
-            href: "/decision-pattern/view",
-          },
+  const routes = useMemo(() => {
+    if (!pathname) return [];
 
-          {
-            icon: RiFileChartLine,
-            label: "Reports",
-            active: pathname.startsWith("/report"),
-            href: "/report/view",
-          },
-          {
-            icon: BiUser,
-            label: "User Management",
-            active: pathname.startsWith("/management"),
-            href: "/management/view",
-          },
-        ],
-        [pathname]
-      )
-    : [];
+    return [
+      {
+        icon: BiGridAlt,
+        label: "Collaboration",
+        active: pathname.startsWith("/collaboration"),
+        href: "/collaboration/view",
+      },
+      {
+        icon: AiOutlineFileText,
+        label: "Proposals",
+        active: pathname.startsWith("/proposal"),
+        href: "/proposal/view",
+      },
+      {
+        icon: MdSecurity,
+        label: "Security",
+        active: pathname.startsWith("/security"),
+        href: "/security/view",
+      },
+      {
+        icon: AiOutlineCheckCircle,
+        label: "Decisions",
+        active:
+          pathname.startsWith("/decision") &&
+          !pathname.startsWith("/decision-pattern"),
+        href: "/decision/view",
+      },
+      {
+        icon: AiOutlineApi,
+        label: "Decision Patterns",
+        active: pathname.startsWith("/decision-pattern"),
+        href: "/decision-pattern/view",
+      },
+
+      {
+        icon: RiFileChartLine,
+        label: "Reports",
+        active: pathname.startsWith("/report"),
+        href: "/report/view",
+      },
+      {
+        icon: BiUser,
+        label: "User Management",
+        active: pathname.startsWith("/management"),
+        href: "/management/view",
+      },
+    ];
+  }, [pathname]);
+
+
 
   return (
     <div className="fixed left-0 top-0 h-full w-[20%] p-2">

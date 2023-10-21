@@ -13,6 +13,7 @@ import * as React from "react";
 
 import dayjs from "dayjs";
 import { HiCheckCircle, HiXCircle } from "react-icons/hi";
+
 interface Field {
   name: string;
   type: {
@@ -22,6 +23,7 @@ interface Field {
     };
   };
 }
+
 interface Header {
   field: string;
   headerName: string;
@@ -37,10 +39,15 @@ export default function DataTable({
   data: any;
   head: Header[];
 }) {
+  const router = useRouter();
+  const pathname = router.pathname;
+  const routes = pathname.split("/");
+
   const isDateField = (fieldName: string) =>
     fieldName.toLowerCase().includes("date") ||
     fieldName.toLowerCase().includes("time") ||
     fieldName.toLowerCase().includes("duration");
+    
   const formatDate = (dateValue: string) => {
     let date = new Date(dateValue);
     if (isNaN(date.getTime())) {
@@ -52,16 +59,14 @@ export default function DataTable({
     const year = date.getFullYear();
     return `${day} ${month} ${year}`;
   };
-  const renderTableCell = (row: any, header: Header) => {
-    const pathname = useRouter().pathname;
-    const routes = pathname.split("/");
 
+  const renderTableCell = (row: any, header: Header, route: string) => {
     const cellValue = row[header.field];
     if (isDateField(header.field) && cellValue) {
       const formattedDate = formatDate(cellValue);
       return (
         <Td key={header.field}>
-          <Link href={`/${routes[1]}/view/${row.id}`}>{formattedDate}</Link>
+          <Link href={`/${route}/view/${row.id}`}>{formattedDate}</Link>
         </Td>
       );
     } else if (typeof cellValue === "boolean") {
@@ -72,13 +77,13 @@ export default function DataTable({
       );
       return (
         <Td key={header.field}>
-          <Link href={`/${routes[1]}/view/${row.id}`}>{icon}</Link>
+          <Link href={`/${route}/view/${row.id}`}>{icon}</Link>
         </Td>
       );
     } else {
       return (
         <Td key={header.field}>
-          <Link href={`/${routes[1]}/view/${row.id}`}>{cellValue}</Link>
+          <Link href={`/${route}/view/${row.id}`}>{cellValue}</Link>
         </Td>
       );
     }
@@ -100,7 +105,7 @@ export default function DataTable({
         <Tbody>
           {data.map((row: any, rowIndex: any) => (
             <Tr key={rowIndex}>
-              {head.map((header) => renderTableCell(row, header))}
+              {head.map((header) => renderTableCell(row, header, routes[1]))}
             </Tr>
           ))}
         </Tbody>

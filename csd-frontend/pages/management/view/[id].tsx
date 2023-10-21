@@ -74,6 +74,13 @@ export default function View({
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
+  
+  const {
+    control,
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+  } = useForm();
   const toast = useToast();
   console.log("from the client", data);
   if (!data) {
@@ -87,12 +94,6 @@ export default function View({
     return <div>Unable to find the User</div>;
   }
 
-  const {
-    control,
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting },
-  } = useForm();
 
   return (
     <div>
