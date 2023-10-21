@@ -1,7 +1,5 @@
-import { Textarea, Button, Flex, Box } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import ScriptEditor, { MonacoOnInitializePane } from "./monacoCodeListing";
-import { FaCheckCircle } from "react-icons/fa";
 import { twMerge } from "tailwind-merge";
 
 function CodeListing({
@@ -20,14 +18,6 @@ function CodeListing({
     setCode(myJSON);
   }, [nodes]);
 
-  // useEffect(() => {
-  //   try {
-  //     const parsedCode = JSON.parse(code);
-  //     setNodes(parsedCode);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [code]);
   const onInitializePane: MonacoOnInitializePane = (
     monacoEditorRef,
     editorRef,

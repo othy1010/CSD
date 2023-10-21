@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { useDropzone } from "react-dropzone";
 import { FiUploadCloud } from "react-icons/fi";
 import client from "./apollo-client";

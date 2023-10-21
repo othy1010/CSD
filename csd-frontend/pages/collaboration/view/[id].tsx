@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Header from "@/components/Header";
 import CButton from "@/components/Button";
 import DatePicker from "react-datepicker";
@@ -71,7 +72,7 @@ export default function View({
     register,
     formState: { errors, isSubmitting },
   } = useForm();
-  
+
   console.log("from the client", data);
   if (!data) {
     toast({

@@ -117,7 +117,7 @@ export default function Create() {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col justify-between gap-4"
           >
-            <FormControl isInvalid={errors.name}>
+            <FormControl isInvalid={errors.name? true : false}>
               <FormLabel htmlFor="name">Username</FormLabel>
               <Input
                 id="name"
@@ -134,7 +134,7 @@ export default function Create() {
                 {(errors.name && errors.name.message) as ReactNode}
               </FormErrorMessage>
             </FormControl>
-            <FormControl isInvalid={errors.email}>
+            <FormControl isInvalid={errors.email? true : false}>
               <FormLabel htmlFor="email">User email</FormLabel>
               <Input
                 id="email"
@@ -151,7 +151,7 @@ export default function Create() {
                 {(errors.email && errors.email.message) as ReactNode}
               </FormErrorMessage>
             </FormControl>
-            <FormControl isInvalid={errors.password}>
+            <FormControl isInvalid={errors.password? true : false}>
               <FormLabel htmlFor="password">Password</FormLabel>
               <InputGroup size="md">
                 <Input
@@ -178,7 +178,7 @@ export default function Create() {
             </FormControl>
 
             <div className="flex gap-2 items-center">
-              <FormControl isInvalid={errors.expertise}>
+              <FormControl isInvalid={errors.expertise? true : false}>
                 <FormLabel htmlFor="expertise">Expertise</FormLabel>
                 <Select
                   id="expertise"

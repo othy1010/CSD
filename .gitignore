@@ -19,7 +19,7 @@ npm-debug.log.*
 # SASS
 ######################
 .sass-cache/
-
+postgres-data
 ######################
 # Eclipse
 ######################

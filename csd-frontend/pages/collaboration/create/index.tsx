@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Header from "@/components/Header";
 import CButton from "@/components/Button";
 import DatePicker from "react-datepicker";
@@ -113,7 +114,7 @@ export default function Create() {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col justify-between gap-4"
           >
-            <FormControl isInvalid={errors.collaborationName}>
+            <FormControl isInvalid={errors.collaborationName? true : false}>
               <FormLabel htmlFor="name">Collaboration name</FormLabel>
               <Input
                 id="name"
@@ -133,7 +134,7 @@ export default function Create() {
                 }
               </FormErrorMessage>
             </FormControl>
-            <FormControl isInvalid={errors.collaborationDescription}>
+            <FormControl isInvalid={errors.collaborationDescription? true : false}>
               <FormLabel htmlFor="description">
                 Collaboration Description
               </FormLabel>
@@ -156,7 +157,7 @@ export default function Create() {
               </FormErrorMessage>
             </FormControl>
             <div className="flex gap-2 items-center">
-              <FormControl isInvalid={errors.collaborationDescription}>
+              <FormControl isInvalid={errors.collaborationDescription? true : false}>
                 <FormLabel htmlFor="startDate">Start Date</FormLabel>
                 <Controller
                   control={control}
@@ -172,7 +173,7 @@ export default function Create() {
                   )}
                 />
               </FormControl>
-              <FormControl isInvalid={errors.collaborationDescription}>
+              <FormControl isInvalid={errors.collaborationDescription? true : false}>
                 <FormLabel htmlFor="decisionDuration">End Date</FormLabel>
                 <Controller
                   control={control}
@@ -189,7 +190,7 @@ export default function Create() {
                 />
               </FormControl>
             </div>
-            <FormControl isInvalid={errors.collaborationDescription}>
+            <FormControl isInvalid={errors.collaborationDescription? true : false}>
               <FormLabel htmlFor="decisionPattern">Decision Pattern</FormLabel>
               <Select
                 id="decisionPattern"

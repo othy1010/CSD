@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   ModalOverlay,
   Button,
@@ -36,6 +37,7 @@ interface Node {
   id: string;
   name: string;
   fields: Field[];
+  isProblematic?: boolean;
 }
 interface Field {
   id: string;
@@ -101,12 +103,7 @@ const initEdges = [
     target: "G",
     markerEnd: "compositionSVG",
     type: "smoothstep",
-    // markerEnd: {
-    //   type: MarkerType.ArrowClosed,
-    //   width: 20,
-    //   height: 20,
-    //   color: "#000000",
-    // },
+
     style: {
       strokeWidth: 2,
       stroke: "#000000",
@@ -124,7 +121,6 @@ export default function CustomModal() {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = useState(<OverlayOne />);
-
   const [nodes, setNodes, onNodesChange] = useNodesState(initNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initEdges);
   const [nodeId, setNodeId] = useState("1");
@@ -232,6 +228,9 @@ export default function CustomModal() {
             </div>
           </ModalBody>
           <ModalFooter>
+            <Button colorScheme="blue" mr={3}>
+              Save
+            </Button>
             <Button onClick={onClose}>Close</Button>
           </ModalFooter>
         </ModalContent>

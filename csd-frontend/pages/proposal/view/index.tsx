@@ -1,6 +1,6 @@
 import Header from "@/components/Header";
 import CButton from "@/components/Button";
-import CollaborationList from "@/components/CollaborationList";
+
 import { useRouter } from "next/navigation";
 import DataTable from "@/components/DataTable";
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";

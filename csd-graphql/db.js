@@ -1,7 +1,7 @@
 import Sequelize from "sequelize";
 
 // Initialize Sequelize with your database connection
-const sequelize = new Sequelize("neondb", "othy1010", "NiduM67lTszZ", {
+const sequelize = new Sequelize("neondb", "othy1010", "j0hn3IUiXqAY", {
   host: "ep-fragrant-base-78211248.us-east-2.aws.neon.tech",
   dialect: "postgres",
   logging: false,

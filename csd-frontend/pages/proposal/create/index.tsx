@@ -24,6 +24,7 @@ import dayjs from "dayjs";
 import { get } from "http";
 import { getCollaboration, getVulnerabilities } from "@/components/ApiQueries";
 import { GetServerSidePropsContext } from "next";
+import { BsFillFileCodeFill } from "react-icons/bs";
 
 const ADD_PROPOSAL_QUERY = gql`
   mutation Addmutation($proposal: AddProposalInput!) {
@@ -43,7 +44,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 export default function Create({
   collaboration,
-  vulnerabilities,
 }: {
   collaboration: any;
   vulnerabilities: any;
@@ -151,7 +151,9 @@ export default function Create({
                     }
                   </FormErrorMessage>
                 </FormControl>
-                <FormControl isInvalid={errors.collaborationDescription}>
+                <FormControl
+                  isInvalid={errors.collaborationDescription ? true : false}
+                >
                   <FormLabel htmlFor="decisionPattern">
                     Collaboration Project
                   </FormLabel>
@@ -231,30 +233,9 @@ export default function Create({
         </div>
         <div className="m-2 px-6 flex-1">
           <div className=" flex flex-col gap-4">
-            <FormLabel htmlFor="Models">Change Logs</FormLabel>
-            <List spacing={3}>
-              <ListItem>
-                <ListIcon as={MdSettings} color="green.500" />
-                Renamed Item 1
-              </ListItem>
-            </List>
             <FormLabel htmlFor="Models">Models</FormLabel>
             <div className=" grid grid-cols-3 gap-4 justify-items-stretch ">
-              <Image
-                className=" bg-white rounded-lg"
-                src="gibbresh.png"
-                fallbackSrc="https://via.placeholder.com/150"
-              />
-              <Image
-                className=" bg-white rounded-lg"
-                src="gibbresh.png"
-                fallbackSrc="https://via.placeholder.com/150"
-              />
-              <Image
-                className=" bg-white rounded-lg"
-                src="gibbresh.png"
-                fallbackSrc="https://via.placeholder.com/150"
-              />
+              <BsFillFileCodeFill className="text-9xl text-sky-900" />
             </div>
             <CustomModal />
           </div>

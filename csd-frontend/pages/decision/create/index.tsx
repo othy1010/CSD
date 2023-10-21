@@ -3,7 +3,7 @@ import CButton from "@/components/Button";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import Datepick from "@/components/Datepick";
 import { Controller, useForm } from "react-hook-form";
 import {
@@ -113,7 +113,7 @@ export default function Create() {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col justify-between gap-4"
           >
-            <FormControl isInvalid={errors.collaborationName}>
+            <FormControl isInvalid={errors.collaborationName? true : false}>
               <FormLabel htmlFor="name">Collaboration name</FormLabel>
               <Input
                 id="name"
@@ -127,10 +127,10 @@ export default function Create() {
                 })}
               />
               <FormErrorMessage>
-                {errors.collaborationName && errors.collaborationName.message}
+                {(errors.collaborationName && errors.collaborationName.message) as ReactNode}
               </FormErrorMessage>
             </FormControl>
-            <FormControl isInvalid={errors.collaborationDescription}>
+            <FormControl isInvalid={errors.collaborationDescription? true : false}>
               <FormLabel htmlFor="description">
                 Collaboration Description
               </FormLabel>
@@ -146,12 +146,12 @@ export default function Create() {
                 })}
               />
               <FormErrorMessage>
-                {errors.collaborationDescription &&
-                  errors.collaborationDescription.message}
+                {(errors.collaborationDescription &&
+                  errors.collaborationDescription.message) as ReactNode}
               </FormErrorMessage>
             </FormControl>
             <div className="flex gap-2 items-center">
-              <FormControl isInvalid={errors.collaborationDescription}>
+              <FormControl isInvalid={errors.collaborationDescription? true : false}>
                 <FormLabel htmlFor="startDate">Start Date</FormLabel>
                 <Controller
                   control={control}
@@ -167,7 +167,7 @@ export default function Create() {
                   )}
                 />
               </FormControl>
-              <FormControl isInvalid={errors.collaborationDescription}>
+              <FormControl isInvalid={errors.collaborationDescription? true : false}>
                 <FormLabel htmlFor="decisionDuration">End Date</FormLabel>
                 <Controller
                   control={control}
@@ -184,7 +184,7 @@ export default function Create() {
                 />
               </FormControl>
             </div>
-            <FormControl isInvalid={errors.collaborationDescription}>
+            <FormControl isInvalid={errors.collaborationDescription? true : false}>
               <FormLabel htmlFor="decisionPattern">Decision Pattern</FormLabel>
               <Select
                 id="decisionPattern"
@@ -204,8 +204,8 @@ export default function Create() {
               </Select>
 
               <FormErrorMessage>
-                {errors.collaborationDescription &&
-                  errors.collaborationDescription.message}
+                {(errors.collaborationDescription &&
+                  errors.collaborationDescription.message) as ReactNode}
               </FormErrorMessage>
             </FormControl>
 
