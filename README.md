@@ -1,5 +1,5 @@
 # CSD
-```
+
 # CSD Project
 
 Welcome to the CSD project. This repository contains two main services:
@@ -137,4 +137,3 @@ docker-compose -f docker-compose.yml up
 ```
 
 
-```
